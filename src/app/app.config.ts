@@ -1,16 +1,13 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, RouteReuseStrategy, TitleStrategy, withComponentInputBinding } from '@angular/router';
-
+import { provideRouter, UrlHandlingStrategy, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { Globally } from './Routing/CustomTittle';
-import { CustomRouteReuseStrategy } from './Routereusestrategy/CustomRouteReuseStrategy ';
+import { urlhandlingstrategy } from './urlHandlingStrategy/UrlHandlingStrategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes,withComponentInputBinding()), provideClientHydration(withEventReplay()),
-    {provide: RouteReuseStrategy,useClass:CustomRouteReuseStrategy},
+    provideRouter(routes,withComponentInputBinding()), provideClientHydration(withEventReplay())
   ]
 };
