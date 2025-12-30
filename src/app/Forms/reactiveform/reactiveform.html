@@ -1,0 +1,131 @@
+<h1>Reactive Form :</h1>
+<form [formGroup]="profiledetail" (ngSubmit)="dis()">
+  <div style="display: flex; flex-direction: column; gap: 20px;">
+
+    <div>
+      <label for="">First Name : </label>
+      <input type="text" placeholder="Fname" formControlName="fname">
+    </div>
+    <div>
+      <label for="">Last Name : </label>
+      <input type="text" placeholder="Lname" formControlName="lname">
+    </div>
+    <div>
+      <label for="">Age : </label>
+      <input type="number" placeholder="Age" formControlName="age">
+    </div>
+
+    <h3>Adress :</h3>
+    <div formGroupName="adress" style="display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <label for="">Street Name : </label>
+        <input type="text" placeholder="Street Name" formControlName="street">
+      </div>
+      <div>
+        <label for="">landmark : </label>
+        <input type="text" placeholder="Landmark" formControlName="landmark">
+      </div>
+      <div>
+        <label for="">City : </label>
+        <input type="text" placeholder="City Name" formControlName="city">
+      </div>
+      <div>
+        <label for="">Zipcode : </label>
+        <input type="number" placeholder="Zipcode" formControlName="zipcode" min="6">
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="!profiledetail.valid">Save</button>
+    </div>
+
+  </div>
+</form>
+
+<ul *ngFor="let data of profileresult">
+  <li>First Name : <strong>{{data.fname}}</strong></li>
+  <li>Last Name : <strong>{{data.lname}}</strong></li>
+  <li>Age : <strong>{{data.age}}</strong></li>
+  <li>Street Name : <strong>{{data.adress.street}}</strong></li>
+  <li>Landmark : <strong>{{data.adress.landmark}}</strong></li>
+  <li>City : <strong>{{data.adress.city}}</strong></li>
+  <li>ZipCode : <strong>{{data.adress.zipcode}}</strong></li>
+</ul>
+
+<hr>
+<h2>Using Form Builder :</h2>
+
+<form [formGroup]="profilebybuilder" (ngSubmit)="disbybyuilder()">
+  <div style="display: flex; flex-direction: column; gap: 20px;">
+
+    <div>
+      <label for="">First Name : </label>
+      <input type="text" placeholder="Fname" formControlName="firstname">
+    </div>
+    <div>
+      <label for="">Last Name : </label>
+      <input type="text" placeholder="Lname" formControlName="lastname">
+    </div>
+
+    <h3>Adress :</h3>
+    <div formGroupName="adress" style="display: flex; flex-direction: column; gap: 20px;">
+      <div>
+        <label for="">City : </label>
+        <input type="text" placeholder="City Name" formControlName="city">
+      </div>
+      <div>
+        <label for="">Zipcode : </label>
+        <input type="number" placeholder="Zipcode" formControlName="zip" min="6">
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" [disabled]="!profilebybuilder.valid">Save</button>
+    </div>
+  </div>
+
+
+  <h4>Form Array :</h4>
+   <div  formArrayName="hobby" style="display: flex; flex-direction: column; gap: 10px;">
+     @for(hob of hobby.controls; track $index; let h = $index){
+       <div>
+         <label for="hob-{{h}}">Hobby {{h+1}}: </label>
+         <input type="text" id="hob-{{h}}" [formControlName]="h">
+         @if(h >= 1){
+           <button (click)="removehob(h)">Delete</button>
+          }
+
+        </div>
+      }
+      <button style="width: 10vw;" type="button" (click)="addhob()">Add Hobby</button>
+   </div>
+
+
+
+</form>
+
+<div>
+  <p>Form Status : {{profilebybuilder.status}}</p>
+</div>
+
+<ul *ngFor="let data of profilebuilder">
+  <li>First Name : <strong>{{data.firstname}}</strong></li>
+  <li>Last Name : <strong>{{data.lastname}}</strong></li>
+  <li>City : <strong>{{data.adress.city}}</strong></li>
+  <li>ZipCode : <strong>{{data.adress.zip}}</strong></li>
+  <li>Hobbies:</li>
+  <ul>
+    <li *ngFor="let hob of data.hobby">
+      {{ hob }}
+    </li>
+  </ul>
+</ul>
+
+<hr>
+
+
+<hr>
+
+<div style="margin-top: 10px;">
+  <a [routerLink]="['']" style="text-decoration: none">Back</a>
+</div>

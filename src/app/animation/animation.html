@@ -1,0 +1,11 @@
+<h2>Animation Desk !</h2>
+
+<nav>
+  <a routerLink="/Animation-Desk/Parent">Parent</a> |
+  <a routerLink="/Animation-Desk/Child">Child</a> |
+  <a routerLink="/Animation-Desk/ThirdParty">Other</a> 
+</nav>
+
+<div [@RouterAnimation]="prepare(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
