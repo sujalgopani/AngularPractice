@@ -94,7 +94,6 @@
          @if(h >= 1){
            <button (click)="removehob(h)">Delete</button>
           }
-
         </div>
       }
       <button style="width: 10vw;" type="button" (click)="addhob()">Add Hobby</button>
@@ -122,10 +121,60 @@
 </ul>
 
 <hr>
+<!-- <h2>Using FormArrayDirective</h2>
+   <form [formArrayName]="Sujal">
+      @for (control of Sujal.controls; track $index) {
+        <input [formControlName]="$index">
+      }
+    </form> -->
+<hr>
+
+<hr>
+    <h2>Form Events</h2>
+    <div [formGroup]="testing">
+      <input type="text" placeholder="Testing Events" formControlName="test">
+    </div>
+<hr>
+
+
+<h2>Utility Functions Example(Events)</h2>
+
+<p><strong>Name:</strong> {{ form.value.name }}</p>
+
+<button (click)="inspect(form.get('name')!)">See Constrol</button>
+
+<button (click)="inspect(form.get('skills')!)">See Form Array</button>
+<button (click)="inspect(form.get('settings')!)">See Form Record</button>
+
+<h3>Skills:</h3>
+<ul>
+  <li *ngFor="let s of form.value.skills">{{ s }}</li>
+</ul>
+
+<hr>
+
+
+<form [formGroup]="login" (ngSubmit)="username()">
+  <div>
+    <label for="email">Email : </label>
+    <input type="text" id="email" formControlName="email">
+  </div>
+  <div>
+    <label for="psw">Password : </label>
+    <input type="text" id="psw" formControlName="psw">
+  </div>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+
+</form>
+
+<button (click)="explittype()">Explit Type</button>
 
 
 <hr>
 
+
 <div style="margin-top: 10px;">
-  <a [routerLink]="['']" style="text-decoration: none">Back</a>
+<a [routerLink]="['']" style="text-decoration: none; border: 2px solid black; padding: 0.5%; color: white; background-color: red;">Back</a>
 </div>

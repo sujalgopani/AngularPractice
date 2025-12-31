@@ -1,4 +1,89 @@
 <h1>Template Form :</h1>
-Favorite Color: <input type="text" [(ngModel)]="favoriteColor">
+<h2>Simple Template Form :</h2>
+First Name : <input type="text" [(ngModel)]="fname" ] />
+<p>{{ fname }}</p>
+<hr />
+
+<h3>Sample Template Form :</h3>
+<h4>Apply Class On Required & Error Message Display</h4>
+<!-- NgForm → creates a FormGroup
+    NgModel → creates FormControls -->
+
+<div>
+
+<form #sujalform="ngForm" (ngSubmit)="submit(sujalform)">
+  <div class="d-flex flex-column">
+    <div>
+      <label for="email">Email : </label>
+      <input
+        type="text"
+        [(ngModel)]="user.email"
+        id="email"
+        class="form-control"
+        name="email"
+        required
+        #email="ngModel"
+      />
+      <div [hidden]="email.valid || email.pristine" class="alert">
+        <p>Email Required !</p>
+      </div>
+    </div>
+
+    <div>
+      <label for="psq">Password : </label>
+      <input
+        type="text"
+        [(ngModel)]="user.psw"
+        name="psw"
+        class="form-control"
+        required
+        #psq="ngModel"
+      />
+      <span [hidden]="psq.valid || psq.pristine">
+        <p class="alert alert-danger">Password Is Requried !</p>
+      </span>
+    </div>
+
+    <div class="mt-3">
+      <label for="">Skill : </label>
+      <select id="" class="form-select" [(ngModel)]="user.skills" name="skills" required>
+        <option value="">Select Skill</option>
+        @for (item of skill; track $index) {
+        <option value="{{ item }}">{{ item }}</option>
+        }
+      </select>
+    </div>
+    <div class="m-4">
+      <button type="submit" class="btn btn-success">Save</button>
+      <button (click)="ResetForm(); sujalform.reset()" class="btn btn-primary ml-2">Reset</button>
+    </div>
+  </div>
+</form>
+</div>
+
+<p>{{ user | json }}</p>
+
+<hr />
+<h2>Form Submitted Responce : </h2>
+
+<div [hidden]="sumitted">
+  <form (ngSubmit)="reposnce()">
+    <div class="d-flex flex-column">
+      <label for="test">Form Submitted ? Click Button</label>
+      <button class="btn btn-success w-25">Check !</button>
+    </div>
+  </form>
+</div>
+
+  @if (sumitted) {
+    <p class="alert alert-success">Form Submitted SuccessFully !</p>
+  }
+
+@if (sumitted) {
+  <button class="btn btn-dnager" (click)="submittoggle()" >Toggle Form Submission</button>
+}
+
 <hr>
-<a [routerLink]="['']">Back</a>
+<div style="margin-top: 10px" class="btn btn-danger w-100">
+  <a [routerLink]="['']" class="text-white">Back</a>
+</div>

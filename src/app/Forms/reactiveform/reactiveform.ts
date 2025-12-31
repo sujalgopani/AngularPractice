@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormRecord, isFormArray, isFormControl, isFormGroup, isFormRecord, ReactiveFormsModule, StatusChangeEvent, TouchedChangeEvent, Validators, ValueChangeEvent } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-reactiveform',
+    standalone: true,
   imports: [ReactiveFormsModule, RouterLink,CommonModule],
   templateUrl: './reactiveform.html',
   styleUrl: './reactiveform.css',
@@ -62,6 +63,83 @@ export class Reactiveform {
     return this.hobby.removeAt(index);
   }
 
+  // form array directive
+  //  Sujal = new FormArray([
+  //   new FormControl('fish'),
+  //   new FormControl('cat'),
+  //   new FormControl('dog'),
+  // ]);
+
+  // form events
+  testing = new FormGroup({
+    test: new FormControl(''),
+  })
+
+  constructor(){
+    this.testing.events.subscribe((e)=>{
+        if(e instanceof ValueChangeEvent){
+          console.log("Value Changed ", e.value)
+        }
+        if(e instanceof StatusChangeEvent){
+          console.log("Status Chnaged ",e.status)
+        }
+        if(e instanceof TouchedChangeEvent){
+          console.log("touch Untouch ",e.touched)
+        }
+
+    })
+  }
+
+  // Here is one complete, real Angular example showing ALL 4 utility functions
+
+  form = new FormGroup({
+    name: new FormControl('Sujal'),
+    skills: new FormArray([
+      new FormControl('Angular'),
+      new FormControl('React'),
+    ]),
+    settings: new FormRecord({
+      theme: new FormControl('dark'),
+      language: new FormControl('en')
+    })
+  });
+
+  inspect(con : AbstractControl){
+    if(isFormControl(con)){
+      console.log("Array Form : ",con.value);
+    }
+    if(isFormArray(con)){
+      console.log("Form array : ",con.length);
+    }
+    if(isFormRecord(con)){
+      console.log("Form record : ",Object.keys(con.controls));
+    }
+  }
+
+
+  // type form
+  login = new FormGroup({
+    // nonNullale Is help to not alllow to reset value in the form control
+    email : new FormControl('test@gmail.com',{nonNullable:true}),
+    psw: new FormControl(''),
+  });
+
+
+  username(){
+    const email = this.login.value.email;
+    this.login.reset();
+    console.log(email); // if the nonNullable is not available then value is become null but here it is so not null
+  }
+
+  explittype(){
+    const explititype = new FormControl<string | null>(null);
+    explititype.setValue("Explicit Type")
+    console.log(explititype.value);
+  }
+
 
   
+
+
+
 }
