@@ -1,0 +1,37 @@
+<h2>Validation for The Reactive Form :</h2>
+
+<form [formGroup]="userform">
+  <label for="fname">Check Error :</label>
+  <input type="text" id="fname" class="form-control" formControlName="fname" />
+
+  @if (fname?.invalid && (fname?.dirty || fname?.touched)) {
+  <div class="text-danger">
+    @if (fname?.hasError('required')) {
+    <div>Name is required</div>
+    } @if (fname?.hasError('minlength')) {
+    <div>Minimum length is 3</div>
+    } @if (fname?.hasError('forbiddenAdmin')) {
+    <div>This name is not allowed</div>
+    }
+  </div>
+  }
+</form>
+<hr />
+
+<form [formGroup]="crossfieldvalidation">
+  <h4>Check Cross Validation Field :</h4>
+  <div>
+    <label for="fname">Fname : </label>
+    <input id="fnmae" name="lname" class="form-control" formControlName="fname" />
+  </div>
+  <div>
+    <label for="lname">Lname : </label>
+    <input id="lname" name="lname" class="form-control" formControlName="lname" />
+  </div>
+</form>
+@if (crossfieldvalidation.hasError('ismatch') && (crossfieldvalidation.dirty && crossfieldvalidation.touched)) {
+  <div >
+    Name cannot match role or audiences will be confused.
+  </div>
+}
+<hr />

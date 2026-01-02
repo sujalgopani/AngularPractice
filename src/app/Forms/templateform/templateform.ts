@@ -9,7 +9,6 @@ export class Actor {
   constructor(public email: string, public psw: string, public skills: string) {}
 }
 
-
 @Component({
   selector: 'app-templateform',
   imports: [RouterLink, FormsModule, JsonPipe],
@@ -44,7 +43,7 @@ export class Templateform {
     console.log('submitted !')
     this.sumitted = true;
   }
-  
+
   submittoggle(){
     this.sumitted = !this.sumitted;
   }

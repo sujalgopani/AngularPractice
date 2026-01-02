@@ -1,0 +1,57 @@
+<h2>Validation for The Template Driven Form :</h2>
+
+<label for="fname">Check Error : (Simple Error Message Show)</label>
+<input
+  type="text"
+  id="fname"
+  name="fname"
+  class="form-control"
+  required
+  minlength="3"
+  [(ngModel)]="user.fname"
+  #fname="ngModel">
+
+@if (fname.invalid && (fname.dirty || fname.touched)) {
+  <div class="text-danger">
+   @if (fname.hasError('required')) {
+  <div>Name Is Required !</div>
+  }
+  @if (fname.hasError('minlength')) {
+    <div>Name Length Is Minimum 3</div>
+  }
+  </div>
+}
+<hr>
+
+<h2>Custom Validation Template Form :</h2>
+
+<form #customform="ngForm">
+  <label for="fname">Custom Error :</label>
+  <input
+  type="text"
+  id="fname"
+  name="fname"
+  class="form-control"
+  required
+  [(ngModel)]="user.fname"
+  [appnotallowword]="blockuser"
+  #worldcollec = "ngModel">
+
+
+  @if (worldcollec.invalid && (worldcollec.touched || worldcollec.dirty)) {
+    <div>
+      @if (worldcollec.hasError('required')) {
+        <div>Name Is Required !</div>
+      }
+      @if(worldcollec.hasError('isdeitect')){
+        <div>Name Is Not Allowed !</div>
+      }
+    </div>
+  }
+
+
+</form>
+
+<hr>
+
+

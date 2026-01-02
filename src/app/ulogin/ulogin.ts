@@ -10,7 +10,11 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
     <hr>
     <a [routerLink]="['Template-form']">Go To Template Form</a>
     <hr>
-    <a [routerLink]="['Signal-form']">Go To Template Form</a>
+    <a [routerLink]="['Signal-form']">Go To Signalform Form</a>
+    <hr>
+    <a [routerLink]="['Validation-Template']">Go To Validation Side(Template)</a>
+    <hr>
+    <a [routerLink]="['Validation-Reactive']">Go To Validation Side(Reactive)</a>
     <router-outlet></router-outlet>
   `,
   imports: [RouterOutlet,RouterLink],
@@ -18,6 +22,6 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
 
 
 export class Ulogin {
-  
-  
+
+
 }

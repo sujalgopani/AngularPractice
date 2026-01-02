@@ -136,10 +136,4 @@ export class Reactiveform {
     explititype.setValue("Explicit Type")
     console.log(explititype.value);
   }
-
-
-  
-
-
-
 }

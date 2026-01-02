@@ -8,9 +8,11 @@ import { animation } from '@angular/animations';
 import { Reactiveform } from './Forms/reactiveform/reactiveform';
 import { Templateform } from './Forms/templateform/templateform';
 import { Signalform } from './Forms/signalform/signalform';
+import { Validationinputs } from './Forms/validationinputsTempl/validationinputs';
+import { Validationinputreactive } from './Forms/validationinputreactive/validationinputreactive';
 
 export const routes: Routes = [
-  { 
+  {
     path:'',
     component:Ulogin
   },
@@ -25,6 +27,14 @@ export const routes: Routes = [
   {
     path:'Signal-form',
     component:Signalform
+  },
+  {
+    path:'Validation-Template',
+    component:Validationinputs
+  },
+  {
+    path:"Validation-Reactive",
+    component:Validationinputreactive
   },
   {
     path:'**',
