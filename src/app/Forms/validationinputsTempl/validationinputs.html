@@ -53,5 +53,71 @@
 </form>
 
 <hr>
+<h2>Cross Validation in Template Form :</h2>
+<form #crossform="ngForm" appnamesame>
+  <div>
+    <label for="fname" class="from-label">First Name : </label>
+    <input
+    type="text"
+    id="fname"
+    name="fname"
+    required
+    [(ngModel)]="crossvalid.fname"
+    class="form-control"
+    #fname="ngModel"
+    >
+  </div>
+  <div>
+    <label for="lname" class="from-label">Last Name : </label>
+    <input
+    type="text"
+    id="lname"
+    name="lname"
+    required
+    [(ngModel)]="crossvalid.lname"
+    class="form-control"
+    #lname="ngModel"
+    >
+  </div>
+</form>
+
+@if (crossform.hasError('iscross') && (fname.touched || lname.touched)) {
+  <div class="text-danger">
+    First & Last Name Is Same !
+  </div>
+}
+
+<hr>
+<div>
+  <h2>Async Validatio Form : </h2>
+  <form #asyncf="ngForm" (ngSubmit)="show(asyncf)">
+    <label for="username">Username : </label>
+    <input
+    type="text"
+    [(ngModel)]="asyncvalid.username"
+    asynitem
+    required
+    id="username"
+    name="username"
+    #username="ngModel"
+    class="form-control"
+    [ngModelOptions]="{updateOn:'submit'}"
+    >
+    <button type="submit">Save</button>
+  </form>
+   @if (username.pending) {
+    <div>Checking...</div>
+  }
+  @if (username.hasError('adminBlocked')) {
+    <div>Username "admin" is not allowed</div>
+  }
+</div>
+<hr />
 
 
+
+
+<hr>
+<div style="margin-top: 10px" class="btn btn-danger w-100">
+  <a [routerLink]="['']" class="text-white">Back</a>
+</div>

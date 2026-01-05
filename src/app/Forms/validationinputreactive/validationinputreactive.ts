@@ -1,16 +1,18 @@
-import { Validator } from '@angular/forms';
-import { Component } from '@angular/core';
+
+import { AsyncValidator } from '@angular/forms';
+import { Component, inject, Injectable } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   Validators,
-  ɵInternalFormsSharedModule,
   ReactiveFormsModule,
   AbstractControl,
   ValidationErrors,
   ValidatorFn,
-  ValueChangeEvent,
 } from '@angular/forms';
+import { catchError, delay, map, Observable, of } from 'rxjs';
+import { toUSVString } from 'util';
+
 
 export function forbiddenAdminValidator(testdata: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -31,12 +33,47 @@ export const unambiguousRoleValidator: ValidatorFn = (
   return name && role && name.value === role.value ? {unambiguousRole: true} : null;
 };
 
-// for thec cross validation 
+// for thec cross validation
 export const testing:ValidatorFn=(constrol:AbstractControl,):ValidationErrors|null=>{
   const fname = constrol.get('fname');
   const lname = constrol.get('lname');
   return fname && lname && fname.value === lname.value ? {ismatch:true} : null;
 }
+
+// async validation (basic)
+@Injectable({providedIn:'root'})
+export class blockusers implements AsyncValidator{
+  validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    return new Promise(res=>{
+      setTimeout(() => {
+        if(control.value === "sujal"){res({adminBlocked:true})}
+        else {res(null)}
+      }, 500)
+    })
+  }
+}
+
+
+@Injectable({providedIn:'root'})
+export class userservice{
+  blockuser = ['sujal','admin'];
+  isnametaken(username:string):Observable<boolean>{
+    const istaken = this.blockuser.includes(username?.toLowerCase());
+    return of(istaken).pipe(delay(1000));
+  }
+}
+
+@Injectable({providedIn:'root'})
+export class blockuserdetect implements AsyncValidator{
+  blockuserlist = inject(userservice);
+  validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    return this.blockuserlist.isnametaken(control.value).pipe(
+      map(isken=>(isken ? {adminBlocked:true}: null)),
+      catchError(()=>of(null))
+    )
+  }
+}
+
 
 @Component({
   selector: 'app-validationinputreactive',
@@ -72,7 +109,12 @@ export class Validationinputreactive {
     fname : new FormControl(''),
     lname: new FormControl('')
   },
-{validators:testing}
-)
+  {validators:testing}
+  )
 
+  // async validation
+  block = inject(blockusers);
+  finalblock = inject(blockuserdetect);
+  // username = new FormControl('',[],[this.block.validate.bind(this.block)]   // async validator(basic)
+  username = new FormControl('',[],[this.finalblock.validate.bind(this.finalblock)]) //(advanced) service => validator => component+html
 }
