@@ -1,1 +1,70 @@
-<p>dynamicforms works!</p>
+<h2>Dynamic Form Example</h2>
+
+<h3>Basic Form :</h3>
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <div *ngFor="let q of questions">
+    <label>{{ q.label }}</label>
+
+    <input
+      [type]="q.type"
+      [formControlName]="q.key"
+      class="form-control"
+    />
+
+    <div *ngIf="form.get(q.key)?.invalid && form.get(q.key)?.touched">
+      <small style="color:red">
+        {{ q.label }} is required
+      </small>
+    </div>
+  </div>
+
+  <br>
+  <button type="submit" [disabled]="form.invalid">
+    Submit
+  </button>
+
+</form>
+
+<h3>Intermidiate Dynamic Form : </h3>
+
+<form [formGroup]="sujalform" (ngSubmit)="submit1()">
+
+  <div *ngFor="let d of sujalqu">
+    <label>{{d.label}}</label>
+
+    <input [type]="d.type" [formControlName]="d.key" class="form-control" >
+
+    @if (sujalform.get(d.key)?.invalid && sujalform.get(d.key)?.touched) {
+      <p class="text-danger">{{d.key}} Is Required !</p>
+    }
+  </div>
+
+  <button class="btn btn-success mx-auto mt-2 d-block" type="submit">Save</button>
+</form>
+
+
+<h3>Self Made Dynamic Form :</h3>
+
+<div>
+  <form [formGroup]="selfmadeForm" (ngSubmit)="submit2()" class="border border-secondary p-3 w-50 mx-auto d-block">
+    @for (i of selfmadeData; track i.key) { @if (i.type == 'text') {
+    <label for="{{ i.key }}">{{ i.label }}</label>
+    <input type="text" id="{{ i.key }}" class="form-control" [formControlName]="i.key" />
+    } @if (i.type == 'number') {
+    <label for="{{ i.key }}">{{ i.label }}</label>
+    <input type="number" id="{{ i.key }}" class="form-control" [formControlName]="i.key" />
+    } @if (i.type == 'select') {
+    <div>
+      <label for="">{{i.label}}</label>
+      <select class="form-control" [formControlName]="i.key">
+        @for (s of i.selectdata; track s.skey) {
+        <option value="{{ s.svalue }}">{{ s.svalue }}</option>
+        }
+      </select>
+    </div>
+    } }
+
+    <button type="submit" class="btn btn-success mx-auto d-block mt-2">Save</button>
+  </form>
+</div>

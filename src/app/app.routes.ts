@@ -10,6 +10,8 @@ import { Templateform } from './Forms/templateform/templateform';
 import { Signalform } from './Forms/signalform/signalform';
 import { Validationinputs } from './Forms/validationinputsTempl/validationinputs';
 import { Validationinputreactive } from './Forms/validationinputreactive/validationinputreactive';
+import { Dynamicforms } from './Forms/dynamicforms/dynamicforms';
+import { Httpreq } from './Http/httpreq/httpreq';
 
 export const routes: Routes = [
   {
@@ -35,6 +37,14 @@ export const routes: Routes = [
   {
     path:"Validation-Reactive",
     component:Validationinputreactive
+  },
+  {
+    path:"Dynamic-Data",
+    component:Dynamicforms
+  },
+  {
+    path:"Http-req",
+    component:Httpreq
   },
   {
     path:'**',

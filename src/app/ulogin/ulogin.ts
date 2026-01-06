@@ -15,6 +15,10 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
     <a [routerLink]="['Validation-Template']">Go To Validation Side(Template)</a>
     <hr>
     <a [routerLink]="['Validation-Reactive']">Go To Validation Side(Reactive)</a>
+     <hr>
+    <a [routerLink]="['Dynamic-Data']">Go To DynamicForm (Reactive)</a>
+     <hr>
+    <a [routerLink]="['Http-req']">Go To Http Side</a>
     <router-outlet></router-outlet>
   `,
   imports: [RouterOutlet,RouterLink],
