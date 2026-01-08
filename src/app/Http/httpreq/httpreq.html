@@ -1,5 +1,88 @@
-<p>httpreq works!</p>
-<form [formGroup]="apiform" (ngSubmit)="loadUsers()">
-  <input type="text" formControlName="ids">
-  <button type="submit">Load Users</button>
-</form>
+<div class="border border-dark p-3 m-4">
+  <h1>Https Request Handle :</h1>
+  <hr class="border border-secondary" />
+  <h4>Click Button And Check Console :</h4>
+  <button (click)="getalluser()" class="btn btn-success mt-2 text-dark">Load All</button>
+  <hr class="border border-secondary" />
+  <h4>Fetch Json By User Id Using (Query Parameters):</h4>
+  <form [formGroup]="apiform">
+    <label for="uid">Enter User Id (Between 1 to 10) :</label>
+    <input
+      type="text"
+      id="uid"
+      name="uid"
+      formControlName="uid"
+      class="form-control"
+      placeholder="Parameters Wise Fetching"
+    />
+    <button (click)="getuserbyid()" class="btn btn-success mt-2 text-dark">Check Console</button>
+  </form>
+
+  <hr class="border border-secondary" />
+  <h4>Check The How The Original Value Angular Can Encode :</h4>
+  <form [formGroup]="encodeform">
+    <label for="email">Enter Original Email : </label>
+    <input type="text" id="email" name="email" class="form-control" formControlName="encodeinput" />
+    <button (click)="demoencode()" class="btn btn-success mt-2 text-dark">
+      Click And See Encoded Email
+    </button>
+  </form>
+  <hr class="border border-secondary" />
+
+  <h4>Fetch Json By Email Parameter Encode Form :</h4>
+  <form [formGroup]="encodeform">
+    <label for="email">Enter Original Email : </label>
+    <input type="text" id="email" name="email" class="form-control" formControlName="encodeinput" />
+
+    <button (click)="getbyemail()" class="btn btn-success mt-2 text-dark">Email Encoded</button>
+  </form>
+  <hr class="border border-secondary" />
+  <h4>Server Response Events Check :</h4>
+  <button (click)="getserverresponse()" class="btn btn-success mt-2 text-dark">
+    Server Respose Event
+  </button>
+  <hr class="border border-secondary" />
+
+  <h2>File Upload and See Progress :</h2>
+
+  <input type="file" (change)="addfile($event)" />
+  <div *ngIf="progresscount > 0">
+ <div
+    class="progress"
+    role="progressbar"
+    aria-label="Animated striped example"
+    aria-valuenow="progresscount"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+  </div>
+  @if (progreeIsVisible) {
+    <span class="progress-bar progress-bar-striped progress-bar-animated bg-info" [style.width.%]="progresscount">
+      {{ progresscount }}%
+    </span>
+  }
+    <p>{{ progressstatus }}</p>
+  </div>
+
+  <hr class="border border-secondary" />
+
+  <h2>Api Responce Fail Check :</h2>
+  <!-- <button (click)="geterrocheck()">Get Data</button> -->
+  <p *ngIf="loading">Loading users...</p>
+
+  <!-- Error -->
+  <div *ngIf="errormsg" class="alert alert-danger">
+    {{ errormsg }}
+    <button class="btn btn-sm btn-warning ms-2" (click)="retry()">
+      Retry
+    </button>
+  </div>
+
+  <!-- Success -->
+  <ul *ngIf="!loading && !errormsg">
+    <li *ngFor="let user of edata">
+      {{ user.length }}
+    </li>
+  </ul>
+  <hr class="border border-secondary" />
+</div>
