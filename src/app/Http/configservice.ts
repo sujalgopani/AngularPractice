@@ -1,21 +1,30 @@
+import { stat } from 'fs';
 import {
   HttpClient,
   HttpErrorResponse,
   HttpEvent,
+  HttpEventType,
+  HttpHandlerFn,
   HttpParams,
-  HttpResponse,
+  HttpRequest,
+  httpResource,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError, timeout } from 'rxjs';
+import { catchError, Observable, retry, tap, throwError, timeout } from 'rxjs';
 import { customencoding } from './customencodinghttps';
-import { ObjectEncodingOptions, stat } from 'fs';
-import { time } from 'console';
-import { timeoutProvider } from 'rxjs/internal/scheduler/timeoutProvider';
+import { email, z } from 'zod';
+
+export const Comment_Parsing_Validation = z.object({
+  id: z.number(),
+  name: z.string().transform((val)=>val.slice(0,4)+" XXX..."),
+  body: z.string(),
+});
+
 
 @Injectable({ providedIn: 'root' })
 export class userservice {
   constructor(private http: HttpClient) {}
-  private api = 'https://jsonplaceholder.typicode.com/users';
+  private api = 'https://jsonplaceholder.typicode.com/users/as';
 
   getuser(): Observable<any> {
     return this.http.get(this.api);
@@ -84,4 +93,50 @@ export class userservice {
       status: erro.status,
     }));
   }
+
+  // use the httpResource
+  user = httpResource.text(() => ({
+    url: `https://jsonplaceholder.typicode.com/comments/1`,
+    method: 'Get',
+    headers: {
+      'First-Time': 'Sujal-Gopani',
+    },
+    timeout: 1200,
+  }));
+
+  UsingHttpResoservice() {
+    this.user;
+    if (this.user.value()) {
+      console.log('Data Fetched SucessFully From Service File Using httpResource !');
+    }
+    if (this.user.hasValue()) {
+      console.log(this.user.value());
+    }
+  }
+
+  commentApi = httpResource(() => `https://jsonplaceholder.typicode.com/comments/1`, {
+    parse: Comment_Parsing_Validation.parse,
+  });
+
+  Parsing_Validating() {
+    if (this.commentApi.hasValue()) {
+      console.log('Parsed Comment:', this.commentApi.value());
+    }
+    console.log('200 OK');
+  }
+
+
 }
+
+export function loggingInterceptor(
+    req:HttpRequest<unknown>,
+    next:HttpHandlerFn,
+  ):Observable<HttpEvent<unknown>>{
+     return next(req).pipe(
+      tap((eve)=>{
+        if(eve.type === HttpEventType.Response){
+          console.log(req.url, ' returned a response with status ',eve.status)
+        }
+      })
+    )
+  }

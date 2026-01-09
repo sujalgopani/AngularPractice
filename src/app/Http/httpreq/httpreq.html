@@ -47,20 +47,22 @@
 
   <input type="file" (change)="addfile($event)" />
   <div *ngIf="progresscount > 0">
- <div
-    class="progress"
-    role="progressbar"
-    aria-label="Animated striped example"
-    aria-valuenow="progresscount"
-    aria-valuemin="0"
-    aria-valuemax="100"
-  >
-  </div>
-  @if (progreeIsVisible) {
-    <span class="progress-bar progress-bar-striped progress-bar-animated bg-info" [style.width.%]="progresscount">
+    <div
+      class="progress"
+      role="progressbar"
+      aria-label="Animated striped example"
+      aria-valuenow="progresscount"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+    @if (progreeIsVisible) {
+    <span
+      class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+      [style.width.%]="progresscount"
+    >
       {{ progresscount }}%
     </span>
-  }
+    }
     <p>{{ progressstatus }}</p>
   </div>
 
@@ -68,21 +70,31 @@
 
   <h2>Api Responce Fail Check :</h2>
   <!-- <button (click)="geterrocheck()">Get Data</button> -->
+  <!-- uncomment when it's testing -->
   <p *ngIf="loading">Loading users...</p>
-
+  <ul>
+    @for (item of edata; track $index) { @if ($index === 5) {
+    <li>{{ item }}</li>
+    } }
+  </ul>
   <!-- Error -->
   <div *ngIf="errormsg" class="alert alert-danger">
     {{ errormsg }}
-    <button class="btn btn-sm btn-warning ms-2" (click)="retry()">
-      Retry
-    </button>
+    <button class="btn btn-sm btn-warning ms-2" (click)="retry()">Retry</button>
   </div>
 
   <!-- Success -->
-  <ul *ngIf="!loading && !errormsg">
-    <li *ngFor="let user of edata">
-      {{ user.length }}
-    </li>
-  </ul>
+
   <hr class="border border-secondary" />
+
+  <h2>Reactive data fetching with httpResource :</h2>
+  <h4>Using httpResource From Service File :</h4>
+  <button (click)="Get_User_Using_Resource_From_service()" class="btn btn-success">Get From Service</button> ||
+  <button (click)="Get_User_Using_Resource_From_Component()" class="btn btn-success">Get From Component</button>
+  <hr class="border border-secondary" />
+
+  <h4>Using zod To Parsing Or Validating Api Response Data :</h4>
+  <button (click)="Get_Data_With_Validating_And_Parsing()" class="btn btn-success">Get By zod</button>
+
+
 </div>

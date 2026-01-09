@@ -1,10 +1,8 @@
-import { Component, numberAttribute } from '@angular/core';
+import { Component } from '@angular/core';
 import { userservice } from '../configservice';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { domainToASCII } from 'url';
-import { HttpClient, HttpEventType } from '@angular/common/http';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { HttpEventType, httpResource } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-httpreq',
   imports: [ReactiveFormsModule, CommonModule],
@@ -64,9 +62,6 @@ export class Httpreq {
   }
 
   // upload file and see the progress
-  uploadProgress = 0;
-  uploadStatus = '';
-
   progresscount = 0;
   progressstatus = '';
   progreeIsVisible = false;
@@ -104,32 +99,52 @@ export class Httpreq {
   }
 
   // api response fail
-  ngOnInit(){
-    this.geterrocheck()
+  ngOnInit() {
+    this.geterrocheck();
   }
 
   loading = false;
   errormsg = '';
-  edata : string[] = [];
-  geterrocheck(){
+  edata: string[] = [];
+  geterrocheck() {
     this.loading = true;
-    this.errormsg= '';
+    this.errormsg = '';
 
     this.userservice.getdatawitherrorcheck().subscribe({
-      next:data=>{
-
-          this.edata = data;
-          this.loading = false;
-          console.log(this.edata)
+      next: (data) => {
+        this.edata = data;
+        this.loading = false;
+        console.log(this.edata);
       },
-      error:err=>{
-        this.loading= false;
-        this.errormsg= err.msg;
-      }
-    })
+      error: (err) => {
+        this.loading = false;
+        this.errormsg = err.msg;
+      },
+    });
   }
 
   retry() {
     this.geterrocheck();
   }
+
+  // use the httpResource
+  Get_User_Using_Resource_From_service() {
+    this.userservice.UsingHttpResoservice();
+  }
+
+  httpResource_Component = httpResource.text(
+    () => 'https://jsonplaceholder.typicode.com/comments/1'
+  );
+  Get_User_Using_Resource_From_Component() {
+    console.log('Data Loaded Succesfully From Component Side !');
+    if (this.httpResource_Component.hasValue()) {
+      console.log(this.httpResource_Component.value());
+    }
+  }
+
+  //using zod to parsing or validating api data
+  Get_Data_With_Validating_And_Parsing(){
+    this.userservice.Parsing_Validating();
+  }
+
 }
