@@ -21,7 +21,4 @@ export class App {
 
   loading = signal(false);
   error = signal('');
-
-
-
 }

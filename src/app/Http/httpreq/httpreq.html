@@ -96,5 +96,20 @@
   <h4>Using zod To Parsing Or Validating Api Response Data :</h4>
   <button (click)="Get_Data_With_Validating_And_Parsing()" class="btn btn-success">Get By zod</button>
 
+  <hr class="border border-secondary" />
 
+  <h3>Modify Body Of By Using Interceptor :</h3>
+  <!-- HttpClient.post() is called with body: { name: 'Alice', role: 'User' }
+Interceptor creates:{
+  name: 'Alice',
+  role: 'User',
+  isAdmin: true
+}
+isafmin is modify by Interceptor -->
+  <button (click)="ModifyBodyByInterceptor()" class="btn btn-success">Click To Modify Class</button>
+
+  <button (click)="t11()">1</button>
+  <button (click)="t12()">2</button>
+  <button (click)="t13()">3</button>
+  <button (click)="t14()">4</button>
 </div>

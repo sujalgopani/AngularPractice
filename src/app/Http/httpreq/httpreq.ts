@@ -147,4 +147,24 @@ export class Httpreq {
     this.userservice.Parsing_Validating();
   }
 
+  // modify body by Interceptor
+  // import in the main.ts first goodInterceptor named Interceptor.
+  ModifyBodyByInterceptor(){
+    this.userservice.test().subscribe(data=>{
+      console.log(data)
+    })
+  }
+
+  t11(){
+    return this.userservice.t1().subscribe(d=>{console.log(d)})
+  }
+  t12(){
+    return this.userservice.t2().subscribe(d=>{console.log(d)})
+  }
+  t13(){
+    return this.userservice.t3().subscribe(d=>{console.log(d)})
+  }
+  t14(){
+    return this.userservice.t4().subscribe(d=>{console.log(d)})
+  }
 }

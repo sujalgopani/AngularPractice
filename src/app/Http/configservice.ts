@@ -13,18 +13,19 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, tap, throwError, timeout } from 'rxjs';
 import { customencoding } from './customencodinghttps';
 import { email, z } from 'zod';
+import { exec } from 'child_process';
+import { Httpreq } from './httpreq/httpreq';
 
 export const Comment_Parsing_Validation = z.object({
   id: z.number(),
-  name: z.string().transform((val)=>val.slice(0,4)+" XXX..."),
+  name: z.string().transform((val) => val.slice(0, 4) + ' XXX...'),
   body: z.string(),
 });
-
 
 @Injectable({ providedIn: 'root' })
 export class userservice {
   constructor(private http: HttpClient) {}
-  private api = 'https://jsonplaceholder.typicode.com/users/as';
+  private api = 'https://jsonplaceholder.typicode.com/users';
 
   getuser(): Observable<any> {
     return this.http.get(this.api);
@@ -101,7 +102,7 @@ export class userservice {
     headers: {
       'First-Time': 'Sujal-Gopani',
     },
-    timeout: 1200,
+    timeout: 1000,
   }));
 
   UsingHttpResoservice() {
@@ -125,18 +126,95 @@ export class userservice {
     console.log('200 OK');
   }
 
+  test() {
+    const user = {
+      name: 'Alice',
+      role: 'User',
+    };
+    return this.http.post('https://jsonplaceholder.typicode.com/posts', user);
+  }
+
+  t1(){
+    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+  }
+  t2(){
+    return this.http.get('https://jsonplaceholder.typicode.com/todos');
+  }
+  t3(){
+    return this.http.get('https://jsonplaceholder.typicode.com/users');
+  }
+
+   t4(){
+    return this.http.get('https://jsonplaceholder.typicode.com/albums');
+  }
 
 }
 
-export function loggingInterceptor(
-    req:HttpRequest<unknown>,
-    next:HttpHandlerFn,
-  ):Observable<HttpEvent<unknown>>{
-     return next(req).pipe(
-      tap((eve)=>{
-        if(eve.type === HttpEventType.Response){
-          console.log(req.url, ' returned a response with status ',eve.status)
-        }
-      })
-    )
-  }
+// Example of the Interceptor
+export function SujalCreatedIntercetor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  return next(req).pipe(
+    tap((event) => {
+      if (event.type === HttpEventType.Response) {
+        console.log(req.url, ' Sujal Created ', event.status);
+      }
+    })
+  );
+}
+
+export function testingInte(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  console.log(req.url, ' Sujal');
+  return next(req);
+}
+
+// modify body
+export function goodInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  if (!req.body) return next(req);
+  const newbody = {
+    ...req.body,
+    isAdmin: true,
+  };
+  const newreq = req.clone({ body: newbody });
+  return next(newreq);
+}
+
+export function redirectTrackingInterceptor(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  return next(req).pipe(
+    tap((event) => {
+      if (event.type === HttpEventType.Response && event.redirected) {
+        console.log('[SECURITY]', 'API Redirect detected:', req.url, '→', event.url);
+
+        // Example real action:
+        // analyticsService.trackRedirect(req.url, event.url);
+        // authService.flagSessionExpired();
+      }
+    })
+  );
+}
+
+
+export function CustomAddHeader(
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+): Observable<HttpEvent<unknown>> {
+  const considerUrls = [
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/todos'
+  ];
+
+  const addheader = considerUrls.some((url) => req.url.includes(url));
+  const newbody = addheader ? req.clone({ setHeaders: { IntSujal: 'True' } }) : req;
+  return next(newbody);
+}
