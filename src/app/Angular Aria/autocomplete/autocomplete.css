@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined');
+
+:host {
+  display: flex;
+  justify-content: center;
+  font-family: 'https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined';
+}
+
+.autocomplete {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.material-symbols-outlined {
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+.search-icon {
+  left: 0.75rem;
+  position: absolute;
+  color: rgb(231, 160, 172);
+}
+
+[ngComboboxInput] {
+  width: 13rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  padding: 0.75rem 0.5rem 0.75rem 2.5rem;
+  color: rgb(125, 90, 96);
+  outline-color: rgb(120, 33, 48);
+  border: 1px solid rgb(18, 11, 13);
+  background-color: rgb(255, 192, 225);
+}
+
+[ngComboboxInput]::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+[ngCombobox]:has([aria-expanded='false']).popup {
+  display: none;
+}
+
+.popup {
+  width: 100%;
+  margin-top: 8px;
+  padding: 0.5rem;
+  max-height: 11rem;
+  border-radius: 0.5rem;
+  background-color: rgb(201, 165, 171);
+  font-size: 0.9rem;
+}
+
+.no-results {
+  padding: 1rem;
+}
+
+[ngListbox] {
+  gap: 2px;
+  height: 100%;
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+}
+
+[ngOption] {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin: 1px;
+  padding: 0 1rem;
+  min-height: 2.25rem;
+  border-radius: 0.5rem;
+}
+
+[ngOption]:hover {
+  background-color: color-mix(in srgb, rgb(0, 0, 0) 5%, transparent);
+}
+
+/* in the option outline color */
+[ngOption][data-active='true'] {
+  outline-offset: -2px;
+  outline: 2px solid rgb(0, 0, 0);
+}
+
+/* selected or active in the option list */
+[ngOption][aria-selected='true'] {
+  color: rgb(132, 27, 79); /*option text */
+  background-color: color-mix(in srgb, rgb(27, 255, 10) 5%, transparent); /* option text background */
+}
+
+
+/* selec or active option check icon disable or enable */
+[ngOption]:not([aria-selected='true']) .check-icon {
+  display: none;
+}
+
+.option-label {
+  flex: 1;
+}
+
+.check-icon {
+  font-size: 0.9rem;
+}

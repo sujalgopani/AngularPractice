@@ -10,6 +10,8 @@ import { Validationinputs } from './Forms/validationinputsTempl/validationinputs
 import { Validationinputreactive } from './Forms/validationinputreactive/validationinputreactive';
 import { Dynamicforms } from './Forms/dynamicforms/dynamicforms';
 import { Httpreq } from './Http/httpreq/httpreq';
+import { Accordion } from './Angular Aria/accordion/accordion';
+import { Autocomplete } from './Angular Aria/autocomplete/autocomplete';
 
 export const routes: Routes = [
   {
@@ -43,6 +45,14 @@ export const routes: Routes = [
   {
     path:"Http-req",
     component:Httpreq
+  },
+  {
+    path:'Angular/Accordion',
+    component:Accordion
+  },
+  {
+    path:'Angular/Auto-Complete',
+    component:Autocomplete
   },
   {
     path:'**',

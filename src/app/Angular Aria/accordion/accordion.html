@@ -1,0 +1,60 @@
+<h2>Accordion :</h2>
+<!-- here if we want to apply only single panel trigger then option is stay false other wise for the multiple then true -->
+<div ngAccordionGroup [multiExpandable]="true">
+  <h4>Single expansion mode :</h4>
+  <h3>
+    <span ngAccordionTrigger panelId="q1" #trigger1="ngAccordionTrigger">
+      Something Here
+      <span
+        aria-hidden="true"
+        class="expand-icon"
+        [class.expand-icon__expanded]="trigger1.expanded()"
+        translate="no"
+        >▲</span>
+    </span>
+  </h3>
+  <div ngAccordionPanel panelId="q1">
+    <ng-template ngAccordionContent>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </ng-template>
+  </div>
+
+  <h3>
+    <span ngAccordionTrigger panelId="q3" #trigger2="ngAccordionTrigger"> Just Seen
+      <span
+        aria-hidden="true"
+        class="expand-icon"
+        [class.expand-icon__expanded]="trigger2.expanded()"
+        translate="no"
+        >▲</span>
+    </span>
+  </h3>
+
+  <div ngAccordionPanel panelId="q3">
+    <ng-template ngAccordionContent>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </ng-template>
+  </div>
+  <div>
+
+  </div>
+  <h3>
+    <span ngAccordionTrigger panelId="q2" #trigger3="ngAccordionTrigger"> Not For You
+      <span
+        aria-hidden="true"
+        class="expand-icon"
+        [class.expand-icon__expanded]="trigger3.expanded()"
+        translate="no"
+>▲</span>
+    </span>
+  </h3>
+
+  <div ngAccordionPanel panelId="q2">
+    <ng-template ngAccordionContent>
+      <p>Lorem ipsum dolor sit amet.</p>
+    </ng-template>
+  </div>
+</div>
+
+
+

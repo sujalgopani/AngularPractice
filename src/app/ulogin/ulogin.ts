@@ -1,3 +1,4 @@
+import { Accordion } from './../Angular Aria/accordion/accordion';
 import { Component, inject } from '@angular/core';
 import { consumerBeforeComputation } from '@angular/core/primitives/signals';
 import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/router';
@@ -19,6 +20,13 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
     <a [routerLink]="['Dynamic-Data']">Go To DynamicForm (Reactive)</a>
      <hr>
     <a [routerLink]="['Http-req']">Go To Http Side</a>
+
+    <hr>
+    <h4>Angular Aria</h4>
+    <ul>
+      <li><a [routerLink]="['Angular/Accordion']">Accordion</a></li>
+      <li><a [routerLink]="['Angular/Auto-Complete']">Auto Complete</a></li>
+    </ul>
     <router-outlet></router-outlet>
   `,
   imports: [RouterOutlet,RouterLink],
