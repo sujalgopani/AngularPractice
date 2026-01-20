@@ -78,23 +78,25 @@
 
 [ngOption]:hover {
   background-color: color-mix(in srgb, rgb(0, 0, 0) 5%, transparent);
-}
+} 
 
 /* in the option outline color */
-[ngOption][data-active='true'] {
+/* [ngOption][data-active='true'] {
   outline-offset: -2px;
   outline: 2px solid rgb(0, 0, 0);
-}
+} */
 
 /* selected or active in the option list */
-[ngOption][aria-selected='true'] {
-  color: rgb(132, 27, 79); /*option text */
-  background-color: color-mix(in srgb, rgb(27, 255, 10) 5%, transparent); /* option text background */
-}
+/* [ngOption][aria-selected='true'] { */
+  /* color: rgb(132, 27, 79); */
+   /*option text */
+  /* background-color: color-mix(in srgb, rgb(27, 255, 10) 5%, transparent); */
+  /* option text background */
+/* }
 
 
 /* selec or active option check icon disable or enable */
-[ngOption]:not([aria-selected='true']) .check-icon {
+/* [ngOption]:not([aria-selected='true']) .check-icon {
   display: none;
 }
 
@@ -105,3 +107,4 @@
 .check-icon {
   font-size: 0.9rem;
 }
+ */

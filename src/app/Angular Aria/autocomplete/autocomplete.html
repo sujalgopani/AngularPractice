@@ -1,35 +1,63 @@
+
 <div ngCombobox filterMode="auto-select">
-  <div #origin class="autocomplete">
-    <span class="search-icon material-symbols-outlined" translate="no" aria-hidden="true"
+    <div #origin class="autocomplete">
+      <span class="search-icon material-symbols-outlined" translate="no" aria-hidden="true"
       >search</span
-    >
-    <!--search icon-->
-    <input
+      >
+      <!--search icon-->
+      <input
       aria-label="Label dropdown"
       placeholder="Select a country"
       [(ngModel)]="query"
       ngComboboxInput
-    />
-  </div>
+      />
+    </div>
 
-  <ng-template ngComboboxPopupContainer>
-    <ng-template
+    <ng-template ngComboboxPopupContainer>
+      <ng-template
       [cdkConnectedOverlay]="{origin, usePopover: 'inline', matchWidth: true}"
       [cdkConnectedOverlayOpen]="true">
       <div class="popup">
         @if (countries().length === 0) {
-        <div class="no-results">No results found</div>
+          <div class="no-results">No results found</div>
         }
         <div ngListbox>
           @for (country of countries(); track country) {
-          <div ngOption [value]="country" [label]="country">
-            <span class="option-label">{{ country }}</span>
-            <span class="check-icon material-symbols-outlined" translate="no" aria-hidden="true"
+            <div ngOption [value]="country" [label]="country">
+              <span class="option-label">{{ country }}</span>
+              <span class="check-icon material-symbols-outlined" translate="no" aria-hidden="true"
               >check</span>
-          </div>
+            </div>
+
           }
         </div>
+
       </div>
     </ng-template>
   </ng-template>
 </div>
+
+<!-- <div [formGroup]="test">
+  <input
+    type="text"
+    placeholder="Enter countries..."
+    formControlName="fname"
+    (input)="changeresult()"
+  />
+  <div class="result">
+    @if (resultlist.length > 0) {
+      <select name="selected" id="" formControlName="selected">
+        @for (item of resultlist; track $index) {
+          <option [value]="item">{{item}}</option>
+        }
+      </select>
+    }
+    @else if (test.get('fname')?.value) {
+      <h4>Record Not Found</h4>
+    }
+  </div>
+</div>
+@if (test.get('selected')?.value !== null && test.get('selected')?.value !== '') {
+  <p>Your Last Selected : {{ test.get('selected')?.value }}</p>
+}
+ -->

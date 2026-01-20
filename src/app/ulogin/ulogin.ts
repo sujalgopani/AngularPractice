@@ -27,6 +27,9 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
       <li><a [routerLink]="['Angular/Accordion']">Accordion</a></li>
       <li><a [routerLink]="['Angular/Auto-Complete']">Auto Complete</a></li>
     </ul>
+    <hr>
+    <a [routerLink]="['Angular/Animation']">Go To Angular Animation</a>
+
     <router-outlet></router-outlet>
   `,
   imports: [RouterOutlet,RouterLink],

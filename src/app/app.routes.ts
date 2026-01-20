@@ -12,6 +12,7 @@ import { Dynamicforms } from './Forms/dynamicforms/dynamicforms';
 import { Httpreq } from './Http/httpreq/httpreq';
 import { Accordion } from './Angular Aria/accordion/accordion';
 import { Autocomplete } from './Angular Aria/autocomplete/autocomplete';
+import { Uanimation } from './uanimation/uanimation';
 
 export const routes: Routes = [
   {
@@ -55,7 +56,12 @@ export const routes: Routes = [
     component:Autocomplete
   },
   {
+    path:'Angular/Animation',
+    component:Uanimation
+  },
+  {
     path:'**',
     component:PageNotFound
-  }
+  },
+
 ];

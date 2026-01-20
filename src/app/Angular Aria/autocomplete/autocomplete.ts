@@ -1,6 +1,8 @@
+import { testing } from './../../Forms/validationinputreactive/validationinputreactive';
 import {Combobox, ComboboxInput, ComboboxPopupContainer} from '@angular/aria/combobox';
 import {Listbox, Option} from '@angular/aria/listbox';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
   afterRenderEffect, // run after render angular page
   ChangeDetectionStrategy, // for the ChangeDetectionStrategy
@@ -10,7 +12,11 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import test from 'node:test';
+
+const ALL_COUNTRIES = ['India','China','Pakistan','Bhutan','Thailand','iran','ink','chikli','cha'];
+
 @Component({
   selector: 'app-autocomplete',
   templateUrl: 'autocomplete.html',
@@ -23,6 +29,8 @@ import {FormsModule} from '@angular/forms';
     Option, // for the dropdown option
     OverlayModule, // for the over floating option
     FormsModule, // for the form handle
+    ReactiveFormsModule,
+    CommonModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -41,6 +49,7 @@ export class Autocomplete {
     ALL_COUNTRIES.filter((country) => country.toLowerCase().startsWith(this.query().toLowerCase())),
   );
 
+
   constructor() {
      afterRenderEffect(() => {
       const option = this.options().find((opt) => opt.active()); // current highlighted option select
@@ -55,5 +64,28 @@ export class Autocomplete {
     });
   }
 
+  // Made by Me
+  // test = new FormGroup({
+  //   fname: new FormControl(''),
+  //   selected : new FormControl('')
+  // });
+
+  // resultlist: string[] = [];
+
+  // allCountries = ALL_COUNTRIES;
+
+  // // 🔹 called on every key press
+  // changeresult() {
+
+
+  //   const value = this.test.get('fname')?.value?.toLowerCase() || '';
+  //   if (!value) {
+  //       this.resultlist = [];
+  //       return;
+  //     }
+  //   this.resultlist = this.allCountries.filter(country =>
+  //     country.toLowerCase().startsWith(value)
+  //   );
+  // }
+
 }
-const ALL_COUNTRIES = ['India','China','Pakistan','Bhutan','Thailand','iran','ink','chikli','cha'];
