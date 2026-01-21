@@ -1,0 +1,47 @@
+<h3>Using animate.enter & animate.leave :</h3>
+
+<button type="button" class="toggle-btn btn btn-secondary m-3" (click)="Toggle()">Click</button>
+
+@if (isShown()) {
+  <div
+    class="enter-container w-50 mx-auto d-block"
+    animate.enter="enter-animation"
+    animate.leave="leave-animation"
+  >
+    <p>The box is entering & leaving</p>
+  </div>
+}
+
+<hr />
+
+<h3>Animating your Application with CSS</h3>
+
+<!-- button click to toggle singnal of the isOpen  -->
+<button type="button" class="toggle-open-close-btn" (click)="ToggleOpen()">
+  Toggle Open/Close
+</button>
+
+<!--  when the isOpen is true then add the open class from the css file and perform the animation -->
+<div class="open-close-container" [class.open]="isOpen()">
+  <!--  here when the isOpen is true then seen Open othrwise false condition Seen Closed -->
+  <p>The Box Is Now {{ isOpen() ? 'Open' : 'Closed' }} !</p>
+</div>
+
+<hr />
+<h3>Animating Auto Height</h3>
+<button type="button" class="toggle-btn" (click)="ToggleAuto()">Toggle Open/Close Auto</button>
+<div class="container" [class.openauto]="isAuto()">
+  <div class="content">
+    <p>The box is now {{ isAuto() ? 'Open' : 'Closed' }}!</p>
+  </div>
+</div>
+
+<div class="p-3">
+  <h4>Many Type Of Animation Is Available On Angular So If Instrested Visit :</h4>
+  <ul>
+    <li>
+      <a href="https://angular.dev/guide/animations" target="_blank">Angular Animation</a>
+    </li>
+  </ul>
+</div>
+

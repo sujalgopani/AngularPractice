@@ -28,7 +28,15 @@ import { Router, RouterLink, RouterOutlet, RouterLinkWithHref } from '@angular/r
       <li><a [routerLink]="['Angular/Auto-Complete']">Auto Complete</a></li>
     </ul>
     <hr>
-    <a [routerLink]="['Angular/Animation']">Go To Angular Animation</a>
+        <h4>Animating Application :</h4>
+        <ul>
+          <li><a [routerLink]="['Angular/Animation']">Go To Angular Animation</a></li>
+        </ul>
+    <hr>
+        <h4>Animating Drag Drop :</h4>
+        <ul>
+          <li><a [routerLink]="['Angular/dnd']">Go To Angular Drag & Drop</a></li>
+        </ul>
 
     <router-outlet></router-outlet>
   `,

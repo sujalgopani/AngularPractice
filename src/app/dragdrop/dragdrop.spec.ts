@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Uanimation } from './uanimation';
+import { Dragdrop } from './dragdrop';
 
-describe('Uanimation', () => {
-  let component: Uanimation;
-  let fixture: ComponentFixture<Uanimation>;
+describe('Dragdrop', () => {
+  let component: Dragdrop;
+  let fixture: ComponentFixture<Dragdrop>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Uanimation]
+      imports: [Dragdrop]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Uanimation);
+    fixture = TestBed.createComponent(Dragdrop);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

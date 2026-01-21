@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  height: 200px;
+  margin-top: 1rem;
+}
+
+/* Card UI */
+.enter-container {
+  border: 2px solid #dddddd;
+  margin-top: 1em;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.enter-container p {
+  text-align: center;
+}
+
+/* ENTER : Bottom ➜ Top */
+.enter-animation {
+  animation: enterFromBottom 0.6s ease-out;
+}
+
+@keyframes enterFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* LEAVE : Top ➜ Bottom */
+.leave-animation {
+  animation: leaveToBottom 0.6s ease-in;
+}
+
+@keyframes leaveToBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+
+/* Animating your Application with CSS */
+
+.open-close-container {
+  border: 1.5px solid #090808;
+  margin-top: 1em;
+  padding: 20px 20px 0px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  height: 100px;
+  opacity: 0.8;
+  background: #3b82f6;
+  color: #ebebeb;
+  /* here transition: property when the height opacity back color change then perform animation */
+  transition-property: height, opacity, background-color, color;
+  transition-duration: 1s;
+  margin: 10px;
+}
+
+.toggle-open-close-btn {
+  background: transparent;
+  border: 1px solid var(--primary-contrast, black);
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.open {
+  transition-duration: 0.5s;
+  height: 200px;
+  opacity: 1;
+  background: #475569;
+  color: #f9fafb;
+}
+
+
+/*  Animating Auto Height */
+.container {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 1s;
+
+}
+
+.container.openauto {
+  grid-template-rows: 1fr;
+}
+
+.container .content {
+  min-height: 0;
+  transition: visibility 1s;
+  padding: 0 20px;
+  visibility: hidden;
+  margin-top: 1em;
+  font-weight: bold;
+  font-size: 20px;
+  background: #3b82f6;
+  color: #ebebeb;
+  overflow: hidden;
+}
+.container.openauto .content {
+  visibility: visible;
+}
+.toggle-btn {
+  background: transparent;
+  border: 1px solid var(--primary-contrast, black);
+  color: var(--primary-contrast, black);
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+    margin: 10px;
+
+}
+
+

@@ -12,7 +12,8 @@ import { Dynamicforms } from './Forms/dynamicforms/dynamicforms';
 import { Httpreq } from './Http/httpreq/httpreq';
 import { Accordion } from './Angular Aria/accordion/accordion';
 import { Autocomplete } from './Angular Aria/autocomplete/autocomplete';
-import { Uanimation } from './uanimation/uanimation';
+import { Animatingapp } from './animation/AnimatingApp/animatingapp/animatingapp';
+import { Dragdrop } from './dragdrop/dragdrop';
 
 export const routes: Routes = [
   {
@@ -57,7 +58,11 @@ export const routes: Routes = [
   },
   {
     path:'Angular/Animation',
-    component:Uanimation
+    component:Animatingapp
+  },
+  {
+    path:'Angular/dnd',
+    component:Dragdrop
   },
   {
     path:'**',
