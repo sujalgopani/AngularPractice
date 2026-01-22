@@ -1,18 +1,216 @@
 <!-- /* using cdkDrag */ -->
-<h3>using cdkDrag : </h3>
+<h3>using cdkDrag :</h3>
 <div>
   <div class="example-box" cdkDrag>Drag me around1</div>
-<div>
-  <div class="example-box" cdkDrag>Drag me around2</div>
-
+  <div>
+    <div class="example-box" cdkDrag>Drag me around2</div>
+  </div>
 </div>
-</div>
 
-
-<hr>
-<h3>using cdkDropList : </h3>
+<hr />
+<h3>using cdkDropList :</h3>
 <div cdkDropList class="example-list2" (cdkDropListDropped)="drop($event)">
   @for (movie of movies; track movie) {
     <div class="example-box2" cdkDrag>{{ movie }}</div>
   }
+</div>
+
+<hr />
+<h3>Transfer draggable elements between lists :</h3>
+<div class="example-container-sujal">
+  <h2>To do</h2>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list-sujal"
+    (cdkDropListDropped)="sujal($event)"
+  >
+    @for (item of todo; track item) {
+      <div class="example-box-sujal" cdkDrag>{{ item }}</div>
+    }
+  </div>
+</div>
+
+<div class="example-container-sujal">
+  <h2>Done</h2>
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list-sujal"
+    (cdkDropListDropped)="sujal($event)"
+  >
+    @for (item of done; track item) {
+      <div class="example-box-sujal" cdkDrag>{{ item }}</div>
+    }
+  </div>
+</div>
+
+<hr />
+<h3>Selection Drop & Drag :</h3>
+<div class="container mt-4">
+  <div class="row">
+    <!-- ALL LIST -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center fw-bold">All</div>
+
+        <div
+          id="all"
+          cdkDropList
+          cdkDropListConnectedTo="even"
+          [cdkDropListData]="all"
+          [cdkDropListEnterPredicate]="notpredict"
+          (cdkDropListDropped)="dropsujal($event)"
+          class="card-body min-vh-25"
+        >
+          @for (number of all; track $index) {
+            <div
+              cdkDrag
+              [cdkDragData]="number"
+              class="list-group-item list-group-item-action text-center mb-2 border rounded"
+            >
+              {{ number }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- EVEN LIST -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header text-center fw-bold">Even</div>
+
+        <div
+          id="even"
+          cdkDropList
+          cdkDropListConnectedTo="all"
+          [cdkDropListData]="even"
+          [cdkDropListEnterPredicate]="predict"
+          (cdkDropListDropped)="dropsujal($event)"
+          class="card-body min-vh-25"
+        >
+          @for (number of even; track $index) {
+            <div
+              cdkDrag
+              [cdkDragData]="number"
+              class="list-group-item list-group-item-action text-center mb-2 border rounded"
+            >
+              {{ number }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+<h3>Restrict movement within an element :</h3>
+<div class="example-boundary border border-success w-50 p-5 mx-auto d-block mb-4">
+  <!-- boundry set by it's parent class name -->
+  <div class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+    I can only be dragged within the dotted container
+  </div>
+</div>
+
+<hr />
+<h3>Restrict movement along an axis :</h3>
+<div class="example-boundary border border-success w-50 p-5 mx-auto d-block mb-4 d-flex">
+  <!-- boundry set by it's parent class name -->
+  <!-- cdkDragLockAxis is apply on X(Horizontal) & Y(Vertical)  -->
+  <div class="example-box" cdkDragBoundary=".example-boundary" cdkDragLockAxis="y" cdkDrag>
+    I can only be dragged within the dotted container by Y Axis
+  </div>
+  <div class="example-box" cdkDragBoundary=".example-boundary" cdkDragLockAxis="x" cdkDrag>
+    I can only be dragged within the dotted container by X Axis
+  </div>
+</div>
+
+<hr />
+<h3>Delay dragging :</h3>
+<div class="example-boundary border border-success w-50 p-5 mx-auto d-block mb-4">
+  <!-- Set Delay Timing To Box Or Div -->
+  <div class="example-box" cdkDragBoundary=".example-boundary" [cdkDragStartDelay]="1000" cdkDrag>
+    I can only be dragged within the dotted container By After 1000 Milisecond(1 Second)
+  </div>
+</div>
+
+<h3>Disable dragging :</h3>
+<div class="example-boundary border border-success w-50 p-5 mx-auto d-block mb-4 d-flex">
+  <!-- boundry set by it's parent class name -->
+  <div class="example-box dis" cdkDragBoundary=".example-boundary" [cdkDragDisabled]="true" cdkDragLockAxis="y" cdkDrag>
+    I can only be dragged within the dotted container by Y Axis (Disabled)
+  </div>
+  <div class="example-box" cdkDragBoundary=".example-boundary" cdkDragLockAxis="x" cdkDrag>
+    I can only be dragged within the dotted container by X Axis
+  </div>
+</div>
+
+
+<h3 class="text-center my-4">Copy Element From One To Other</h3>
+
+<div class="container">
+  <div class="row g-4">
+
+    <!-- PRODUCTS -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header text-center fw-bold">
+          Products
+        </div>
+
+        <div
+          cdkDropList
+          [cdkDropListData]="products"
+          [cdkDropListConnectedTo]="[cartList]"
+          cdkDropListSortingDisabled
+          cdkDropListHasAnchor
+          class="card-body d-grid gap-2"
+          style="grid-template-columns: repeat(2, 1fr);"
+        >
+          @for (product of products; track $index) {
+            <div
+              cdkDrag
+              [cdkDragData]="product"
+              class="border rounded p-2 text-center bg-light cursor-pointer"
+            >
+              {{ product }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- CART -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-header text-center fw-bold">
+          Shopping Cart
+        </div>
+
+        <div
+          cdkDropList
+          #cartList="cdkDropList"
+          [cdkDropListData]="cart"
+          (cdkDropListDropped)="Copyevent($event)"
+          class="card-body d-flex flex-column gap-2"
+        >
+          @for (product of cart; track $index) {
+            <div
+              cdkDrag
+              class="border rounded p-2 text-center bg-success text-white"
+            >
+              {{ product }}
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
