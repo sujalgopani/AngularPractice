@@ -1,0 +1,6 @@
+@CRUD_Application_Angular_Asp_Net_sql_HostAddress = http://localhost:5231
+
+GET {{CRUD_Application_Angular_Asp_Net_sql_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

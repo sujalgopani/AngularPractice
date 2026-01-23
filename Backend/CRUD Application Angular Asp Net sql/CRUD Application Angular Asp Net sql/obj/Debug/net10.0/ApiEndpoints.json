@@ -1,0 +1,65 @@
+[
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "GetAllStudent",
+    "RelativePath": "api/MainCrud",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "AddStudent",
+    "RelativePath": "api/MainCrud",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sm",
+        "Type": "CRUD_Application_Angular_Asp_Net_sql.Model.StudnetMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/MainCrud/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sm",
+        "Type": "CRUD_Application_Angular_Asp_Net_sql.Model.StudnetMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "DeleteStudent",
+    "RelativePath": "api/MainCrud/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

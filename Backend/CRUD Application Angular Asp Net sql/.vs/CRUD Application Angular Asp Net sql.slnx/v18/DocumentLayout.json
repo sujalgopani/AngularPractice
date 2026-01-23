@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|c:\\users\\admin\\desktop\\gittest\\crud angular asp net sql\\backend\\crud application angular asp net sql\\crud application angular asp net sql\\controllers\\maincrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|solutionrelative:crud application angular asp net sql\\controllers\\maincrudcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|c:\\users\\admin\\desktop\\gittest\\crud angular asp net sql\\backend\\crud application angular asp net sql\\crud application angular asp net sql\\model\\studentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|solutionrelative:crud application angular asp net sql\\model\\studentdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|c:\\users\\admin\\desktop\\gittest\\crud angular asp net sql\\backend\\crud application angular asp net sql\\crud application angular asp net sql\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|solutionrelative:crud application angular asp net sql\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|c:\\users\\admin\\desktop\\gittest\\crud angular asp net sql\\backend\\crud application angular asp net sql\\crud application angular asp net sql\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BC49D7EE-69AC-4187-AE21-BC489F89FEA0}|CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql.csproj|solutionrelative:crud application angular asp net sql\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentDbcontext.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Model\\StudentDbcontext.cs",
+              "RelativeDocumentMoniker": "CRUD Application Angular Asp Net sql\\Model\\StudentDbcontext.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Model\\StudentDbcontext.cs",
+              "RelativeToolTip": "CRUD Application Angular Asp Net sql\\Model\\StudentDbcontext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAcwA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T11:47:10.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainCrudController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Controllers\\MainCrudController.cs",
+              "RelativeDocumentMoniker": "CRUD Application Angular Asp Net sql\\Controllers\\MainCrudController.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Controllers\\MainCrudController.cs",
+              "RelativeToolTip": "CRUD Application Angular Asp Net sql\\Controllers\\MainCrudController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAowGIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T11:05:14.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\appsettings.json",
+              "RelativeDocumentMoniker": "CRUD Application Angular Asp Net sql\\appsettings.json",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\appsettings.json",
+              "RelativeToolTip": "CRUD Application Angular Asp Net sql\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-23T10:58:45.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Program.cs",
+              "RelativeDocumentMoniker": "CRUD Application Angular Asp Net sql\\Program.cs",
+              "ToolTip": "C:\\Users\\admin\\Desktop\\Gittest\\CRUD Angular Asp net Sql\\Backend\\CRUD Application Angular Asp Net sql\\CRUD Application Angular Asp Net sql\\Program.cs",
+              "RelativeToolTip": "CRUD Application Angular Asp Net sql\\Program.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-23T10:56:13.112Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
