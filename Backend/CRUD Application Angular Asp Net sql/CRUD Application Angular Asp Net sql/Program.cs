@@ -19,11 +19,11 @@ builder.Services.AddDbContext<StudentDbcontext>(options =>
 // CORS
 builder.Services.AddCors(opt =>
 {
-    opt.AddPolicy("AllowAngular", policy =>
+    opt.AddDefaultPolicy(builder =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        builder.WithOrigins("http://localhost:4200")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
     });
 });
 
@@ -35,8 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-app.UseCors("AllowAngular");
+//app.UseHttpsRedirection();
+app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 

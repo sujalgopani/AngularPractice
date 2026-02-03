@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRUD Application Angular Asp Net sql")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dda587519f2aea596fa463bcc9b3faf0ca6dad7")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRUD Application Angular Asp Net sql")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRUD Application Angular Asp Net sql")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

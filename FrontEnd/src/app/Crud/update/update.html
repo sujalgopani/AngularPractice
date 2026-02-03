@@ -1,1 +1,101 @@
-<p>update works!</p>
+<div class="border p-3 m-3 w-75 d-block mx-auto">
+  <h5>Update Student :</h5>
+
+  <form [formGroup]="Searchbar" (ngSubmit)="UpdateBtn()">
+    <div class="row d-flex align-items-center">
+      <div class="col-md-3 mt-md-0 mt-3">
+        <label for="" class="form-label">Search By Id :</label>
+      </div>
+      <div class="col-md-7 mt-md-0 mt-3">
+        <input type="text" formControlName="Sid" class="form-control" />
+      </div>
+      <div class="col-md-2 mt-md-0 mt-3">
+        <button type="submit" class="btn btn-dark">Search</button>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="IsSearched">
+    <div class="border w-75 d-block mx-auto p-3 m-3">
+      <h5>Update Now :</h5>
+      <form [formGroup]="Updatefrom" (ngSubmit)="UpdateBtn()" class="form">
+        <div class="row">
+          <div class="col-md-12 mt-md-0 mt-3">
+            <label class="form-label">Full Name :</label>
+            <input type="text" class="form-control" formControlName="Sname" />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label class="form-label" for="">DOB :</label>
+            <input type="date" formControlName="Dob" class="form-control" />
+          </div>
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label for="">Gender :</label>
+            <div class="d-flex align-items-center mt-2 gap-3">
+              <div>
+                <input type="radio" value="Male" formControlName="Gender" id="male" />
+                <label for="male">Male</label>
+              </div>
+              <div>
+                <input type="radio" value="Female" formControlName="Gender" id="female" />
+                <label for="female">Female</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-4 mt-md-0 mt-3">
+            <label class="form-label">City :</label>
+            <input type="text" formControlName="City" class="form-control" />
+          </div>
+          <div class="col-md-4 mt-md-0 mt-3">
+            <label class="form-label">State :</label>
+            <input type="text" formControlName="State" class="form-control" />
+          </div>
+          <div class="col-md-4 mt-md-0 mt-3">
+            <label class="form-label">Country :</label>
+            <input type="text" formControlName="Country" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-12 mt-md-0 mt-3">
+            <label for="" class="form-label"
+              >Address (Contain Your City, State, Country Also) :</label
+            >
+            <textarea name="" id="" formControlName="Adress" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label for="" class="form-label">Email :</label>
+            <input type="text" formControlName="Email" class="form-control" />
+          </div>
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label for="" class="form-label">Contact :</label>
+            <input type="number" formControlName="Contact" class="form-control" />
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label for="" class="form-label">Cources :</label>
+            <input type="text" class="form-control" formControlName="Cources" />
+          </div>
+          <div class="col-md-6 mt-md-0 mt-3">
+            <label for="" class="form-label">Comment :</label>
+            <textarea name="" formControlName="Comment" id="" class="form-control"></textarea>
+          </div>
+        </div>
+
+        <div class="">
+          <button type="submit" class="btn btn-success m-2 w-100">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
