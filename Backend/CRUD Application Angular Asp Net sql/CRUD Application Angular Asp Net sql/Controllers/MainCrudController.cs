@@ -1,11 +1,13 @@
 ﻿using CRUD_Application_Angular_Asp_Net_sql.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+    [EnableCors("CorsPolicy")]
     public class MainCrudController : ControllerBase
     {
         private readonly StudentDbcontext _context;
@@ -22,10 +24,16 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
             return Ok(students);
         }
 
+        [HttpGet]
+        public IActionResult GetById(int id) {
+            var Find = _context.studnets.FirstOrDefault(x => x.studentid == id);
+            return Ok(Find);
+        }
+
         [HttpPost]
         public IActionResult AddStudent(StudnetMaster sm)
         {
-            _context.studnets.Add(sm);
+            _context.studnets.Add(sm!);
             _context.SaveChanges();
             return Ok();
         }

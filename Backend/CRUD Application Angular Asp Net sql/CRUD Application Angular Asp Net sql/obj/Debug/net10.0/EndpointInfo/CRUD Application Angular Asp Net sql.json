@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/MainCrud": {
+    "/api/MainCrud/GetAllStudent": {
       "get": {
         "tags": [
           "MainCrud"
@@ -15,7 +15,31 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/MainCrud/GetById": {
+      "get": {
+        "tags": [
+          "MainCrud"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/MainCrud/AddStudent": {
       "post": {
         "tags": [
           "MainCrud"
@@ -46,7 +70,7 @@
         }
       }
     },
-    "/api/MainCrud/{id}": {
+    "/api/MainCrud/UpdateStudent/{id}": {
       "put": {
         "tags": [
           "MainCrud"
@@ -86,7 +110,9 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/MainCrud/DeleteStudent/{id}": {
       "delete": {
         "tags": [
           "MainCrud"

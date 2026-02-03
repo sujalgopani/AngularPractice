@@ -1,44 +1,74 @@
-<div class="p-3">
-  <div>
-    <h2>All Student List :</h2>
-  </div>
-  <!-- <div *ngIf="loading">Loading Data...</div> -->
+<div class="p-3 position-relative">
 
-  {{ students.length }}
+  <!-- ✅ Loader Overlay -->
+  @if(loading){
+    <div class="loader-overlay">
+      <svg width="50" height="50"
+        fill="hsl(228, 97%, 42%)"
+        viewBox="0 0 24 24">
 
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Student Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">DOB</th>
-        <th scope="col">Address</th>
-        <th scope="col">City</th>
-        <th scope="col">State</th>
-        <th scope="col">Country</th>
-        <th scope="col">Contact</th>
-        <th scope="col">Email</th>
-        <th scope="col">Cource</th>
-        <th scope="col">Comment</th>
-      </tr>
-    </thead>
+        <g>
+          <rect x="11" y="1" width="2" height="5" opacity=".14" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(30 12 12)" opacity=".29" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(60 12 12)" opacity=".43" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(90 12 12)" opacity=".57" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(120 12 12)" opacity=".71" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(150 12 12)" opacity=".86" />
+          <rect x="11" y="1" width="2" height="5" transform="rotate(180 12 12)" />
 
-    <tbody>
-      @for (item of students; track $index) {
-        <tr scope="row" class="table-light">
-          <td>{{ item.studentid }}</td>
-          <td>{{ item.studentname }}</td>
-          <td>{{ item.dob | date: 'dd-MM-yyyy' }}</td>
-          <td>{{ item.address }}</td>
-          <td>{{ item.city }}</td>
-          <td>{{ item.state }}</td>
-          <td>{{ item.country }}</td>
-          <td>{{ item.contact }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.cources }}</td>
-          <td>{{ item.comment }}</td>
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            dur="0.75s"
+            values="0 12 12;360 12 12"
+            repeatCount="indefinite"
+          />
+        </g>
+      </svg>
+    </div>
+  }
+
+  <div [class.blur]="loading">
+    <div class="p-3">
+      <div>
+      <h2>All Student List :</h2>
+    </div>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Student Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">DOB</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Country</th>
+          <th scope="col">Contact</th>
+          <th scope="col">Email</th>
+          <th scope="col">Cource</th>
+          <th scope="col">Comment</th>
         </tr>
-      }
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        @for (item of students; track $index) {
+          <tr scope="row" class="table-light">
+            <td>{{ $index+1 }}</td>
+            <td>{{ item.studentid }}</td>
+            <td>{{ item.studentname }}</td>
+            <td>{{ item.dob | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ item.address }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.state }}</td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.contact }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.cources }}</td>
+            <td>{{ item.comment }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
 </div>

@@ -17,13 +17,21 @@ builder.Services.AddDbContext<StudentDbcontext>(options =>
 );
 
 // CORS
+//builder.Services.AddCors(opt =>
+//{
+//    opt.AddDefaultPolicy(builder =>
+//    {
+//        builder.WithOrigins("http://localhost:4200")
+//               .AllowAnyHeader()
+//               .AllowAnyMethod();
+//    });
+//});
+
 builder.Services.AddCors(opt =>
 {
-    opt.AddDefaultPolicy(builder =>
+    opt.AddPolicy("CorsPolicy",builder =>
     {
-        builder.WithOrigins("http://localhost:4200")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+        builder.AllowAnyHeader().AllowCredentials().AllowAnyMethod().WithOrigins("http://localhost:4200", "http://localhost:4200");
     });
 });
 
@@ -35,8 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
-app.UseCors();
+app.UseCors("CorsPolicy");
+app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
