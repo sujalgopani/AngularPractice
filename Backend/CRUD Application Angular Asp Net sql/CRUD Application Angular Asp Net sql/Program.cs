@@ -1,10 +1,12 @@
 using CRUD_Application_Angular_Asp_Net_sql.Model;
+using CRUD_Application_Angular_Asp_Net_sql.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers
 builder.Services.AddControllers();
+builder.Services.AddScoped<EmialService>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();

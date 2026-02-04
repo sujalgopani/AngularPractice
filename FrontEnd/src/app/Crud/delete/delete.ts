@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Studentcrud } from '../Service/studentcrud';
+import { debounce, debounceTime, filter, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-delete',
@@ -9,7 +10,25 @@ import { Studentcrud } from '../Service/studentcrud';
   templateUrl: './delete.html',
   styleUrl: './delete.css',
 })
-export class Delete {
+export class Delete implements OnInit {
+  ngOnInit(): void {
+    const StudentId = this.Searchbar.get('Sid')?.valueChanges.pipe(
+      debounceTime(500),
+      filter((value: any) => value && value.toString().trim().length >= 1), // filter the api value if length >=1 then api is call
+
+      switchMap((value: any) => this.service.GetStudentById(value)), // old api is cancel and new api is cal
+    ).subscribe({
+       next: (res:any) => {
+      this.DeleteList = res;
+      this.IsSearched = true;
+    },
+    error: () => {
+      this.IsSearched = false;
+      this.DeleteList = null;
+    }
+    });
+  }
+
   service = inject(Studentcrud);
   private cdr = inject(ChangeDetectorRef);
   Searchbar = new FormGroup({

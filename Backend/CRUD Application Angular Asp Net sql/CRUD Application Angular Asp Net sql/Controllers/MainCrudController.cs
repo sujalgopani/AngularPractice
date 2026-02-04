@@ -1,7 +1,9 @@
 ﻿using CRUD_Application_Angular_Asp_Net_sql.Model;
+using CRUD_Application_Angular_Asp_Net_sql.Service;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
 {
@@ -11,10 +13,13 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
     public class MainCrudController : ControllerBase
     {
         private readonly StudentDbcontext _context;
+        private readonly EmialService _Emailservice;
 
-        public MainCrudController(StudentDbcontext context)
+
+        public MainCrudController(StudentDbcontext context, EmialService Emailservice)
         {
             _context = context;
+            _Emailservice = Emailservice;
         }
 
         [HttpGet]
@@ -31,13 +36,31 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddStudent(StudnetMaster sm)
+        public async Task<IActionResult> AddStudent(StudnetMaster sm)
         {
             _context.studnets.Add(sm!);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            var emailobj = new EmailModel
+            {
+                To = sm.email,
+                Subject = "Student Registration Confermation Mail !",
+                Body = $"Hello {sm.studentname} \n," +
+                $"Your Registration Is Done From Our Team Side,\n" +
+                $"So Check Your Data If Any Trouble Then Contact Now Help-Number : 84017XXXXX,\n" +
+                $"Your Id : {sm.studentid}\n" +
+                $"Your Full Name : {sm.studentname}\n" +
+                $"Your BirthDate : {sm.DOB}\n" +
+                $"Your Address : {sm.address}\n" +
+                $"Your City: {sm.city}\n" +
+                $"Your State : {sm.state}\n" +
+                $"Your Country : {sm.country}\n" +
+                $"Your Email : {sm.email}\n" +
+                $"Your SelectedCource: {sm.cources}\n"
+            };
+            await _Emailservice.SendEmailAsync(emailobj);
             return Ok();
         }
-
 
 
         [HttpPut("{id}")]
@@ -106,6 +129,15 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
                     Message = "Student Delete SuccessFully !"
                 });
             }
+        }
+
+
+        // sending email
+        [HttpPost("Send")]
+        public async Task<IActionResult> SendEmail(EmailModel Em)
+        {
+            await _Emailservice.SendEmailAsync(Em);
+            return Ok("Mail Send SuccesFully..");
         }
     }
 }

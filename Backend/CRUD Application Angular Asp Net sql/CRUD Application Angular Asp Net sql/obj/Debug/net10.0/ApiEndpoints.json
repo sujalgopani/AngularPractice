@@ -59,6 +59,22 @@
   },
   {
     "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "SendEmail",
+    "RelativePath": "api/MainCrud/SendEmail/Send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Em",
+        "Type": "CRUD_Application_Angular_Asp_Net_sql.Model.EmailModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
     "Method": "UpdateStudent",
     "RelativePath": "api/MainCrud/UpdateStudent/{id}",
     "HttpMethod": "PUT",

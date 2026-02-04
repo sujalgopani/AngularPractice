@@ -8,15 +8,26 @@
       </div>
       <div class="col-md-7 mt-md-0 mt-3">
         <input type="number" formControlName="Sid" class="form-control" />
+        @if (
+        Searchbar.get('Sid')?.touched ||
+        (Searchbar.get('Sid')?.dirty && Searchbar.get('Sid')?.pristine)
+      ) {
+        @if (Searchbar.get('Sid')?.errors?.['required']) {
+          <div class="text-danger">
+            <p>Student Id  Is Required !</p>
+          </div>
+        }
+      }
       </div>
       <div class="col-md-2 mt-md-0 mt-3">
         <button type="submit" class="btn btn-dark">Search</button>
       </div>
+
     </div>
   </form>
-    @if (IsUpdate) {
-          <div class="alert alert-success text-center" role="alert">Update SuccessFully Done ! 🎊</div>
-        }
+  @if (IsUpdate) {
+    <div class="alert alert-success text-center" role="alert">Update SuccessFully Done ! 🎊</div>
+  }
 
   <div *ngIf="IsSearched">
     <div class="border w-75 d-block mx-auto p-3 m-3">

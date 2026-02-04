@@ -161,3 +161,6 @@ C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application
 C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\obj\Debug\net10.0\CRUD Application Angular Asp Net sql.genruntimeconfig.cache
 C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\obj\Debug\net10.0\ref\CRUD Application Angular Asp Net sql.dll
 C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\obj\Debug\net10.0\CRUD Application Angular Asp Net sql.sourcelink.json
+C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\bin\Debug\net10.0\BouncyCastle.Cryptography.dll
+C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\bin\Debug\net10.0\MailKit.dll
+C:\Users\admin\Desktop\Gittest\CRUD Angular Asp net Sql\Backend\CRUD Application Angular Asp Net sql\CRUD Application Angular Asp Net sql\bin\Debug\net10.0\MimeKit.dll

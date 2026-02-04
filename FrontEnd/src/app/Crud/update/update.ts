@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, ChangeDetectorRef } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Studentcrud } from '../Service/studentcrud';
 
 @Component({
@@ -13,7 +13,7 @@ export class Update {
   Service = inject(Studentcrud);
   private cdr = inject(ChangeDetectorRef);
   Searchbar = new FormGroup({
-    Sid: new FormControl(),
+    Sid: new FormControl<number | null>(null,Validators.required),
   });
 
   Updatefrom = new FormGroup({
@@ -72,7 +72,7 @@ export class Update {
 
   UpdateBtn() {
     const StudentId = this.Searchbar.get('Sid')?.value;
-    this.Service.UpdateStudent(StudentId, this.Updatefrom.value).subscribe({
+    this.Service.UpdateStudent(StudentId!, this.Updatefrom.value).subscribe({
       next: (res: any) => {
         this.IsUpdate = true;
         console.log('Update Done !');

@@ -6,6 +6,7 @@ import { All } from './Crud/all/all';
 import { Add } from './Crud/add/add';
 import { Update } from './Crud/update/update';
 import { Delete } from './Crud/delete/delete';
+import { Test } from './test/test';
 
 export const routes: Routes = [
   {
@@ -23,4 +24,8 @@ export const routes: Routes = [
       { path: 'Delete-Student', component: Delete },
     ],
   },
+  {
+    path:'Test',
+    component:Test
+  }
 ];

@@ -26,5 +26,9 @@ export class Studentcrud {
   DeleteStudent(StudentId : number){
     return this.http.delete<any>(`https://localhost:44309/api/MainCrud/DeleteStudent/${StudentId}`);
   }
-  
+
+  SendEmailToStudent(MailComponent : any){
+    return this.http.post<any>("https://localhost:44309/api/MainCrud/SendEmail/Send",MailComponent);
+  }
 }
+

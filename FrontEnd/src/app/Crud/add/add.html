@@ -1,88 +1,206 @@
-<div class="border w-75 d-block mx-auto p-3 m-3">
-  <h5>Add Student :</h5>
-  <div class="p-2 text-center text-danger">
-    <p>Submit Timing : {{displayTime}}</p>
+@if (Isloading) {
+  <div class="loader-overlay">
+    <svg width="50" height="50" fill="hsl(228, 97%, 42%)" viewBox="0 0 24 24">
+      <g>
+        <rect x="11" y="1" width="2" height="5" opacity=".14" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(30 12 12)" opacity=".29" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(60 12 12)" opacity=".43" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(90 12 12)" opacity=".57" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(120 12 12)" opacity=".71" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(150 12 12)" opacity=".86" />
+        <rect x="11" y="1" width="2" height="5" transform="rotate(180 12 12)" />
+
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          dur="0.75s"
+          values="0 12 12;360 12 12"
+          repeatCount="indefinite"
+        />
+      </g>
+    </svg>
   </div>
-  <form [formGroup]="AddForm" (ngSubmit)="Addstudent()" class="form">
-    <div class="row">
-      <div class="col-md-12 mt-md-0 mt-3">
-        <label class="form-label">Full Name :</label>
-        <input type="text" class="form-control" formControlName="studentname" />
-      </div>
+}
+<div [class.blur]="Isloading">
+  <div class="border w-75 d-block mx-auto p-3 m-3">
+    <h5>Add Student :</h5>
+    <p class="text-danger">Form Is Submitted If Your Tab Is Switch Or Make New !</p>
+    <div class="p-2 text-center text-dark">
+      <p>Submit Timing : {{ displayTime }}</p>
     </div>
-
-    <div class="row mt-2">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <label class="form-label" for="">DOB :</label>
-        <input type="date" formControlName="dob" class="form-control" />
-      </div>
-      <!-- <div class="col-md-6 mt-md-0 mt-3">
-        <label for="">Gender :</label>
-        <div class="d-flex align-items-center mt-2 gap-3">
-          <div>
-            <input type="radio" value="Male" id="male" />
-            <label for="male">Male</label>
-          </div>
-          <div>
-            <input type="radio" value="Female" id="female" />
-            <label for="female">Female</label>
-          </div>
+    <form [formGroup]="AddForm" (ngSubmit)="Addstudent()" class="form">
+      <div class="row">
+        <div class="col-md-12 mt-md-0 mt-3">
+          <label class="form-label">Full Name :</label>
+          <input type="text" class="form-control" formControlName="studentname" />
         </div>
-      </div> -->
-    </div>
+        @if (
+          AddForm.get('studentname')?.touched ||
+          (AddForm.get('studentname')?.dirty && AddForm.get('studentname')?.pristine)
+        ) {
+          @if (AddForm.get('studentname')?.errors?.['required']) {
+            <div class="text-danger">
+              <p>Name Is Required !</p>
+            </div>
+          }
+          @if (AddForm.get('studentname')?.errors?.['minlength']) {
+            <div class="text-danger">
+              <p>Name Minimum 3 Words</p>
+            </div>
+          }
+        }
+      </div>
 
-    <div class="row mt-2">
-      <div class="col-md-4 mt-md-0 mt-3">
-        <label class="form-label">City :</label>
-        <input type="text" formControlName="city" class="form-control" />
+      <div class="row mt-2">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <label class="form-label" for="">DOB :</label>
+          <input type="date" formControlName="dob" class="form-control" />
+        </div>
+        @if (
+          AddForm.get('dob')?.touched || (AddForm.get('dob')?.dirty && AddForm.get('dob')?.pristine)
+        ) {
+          @if (AddForm.get('dob')?.errors?.['required']) {
+            <div class="text-danger">
+              <p>Date Is Required !</p>
+            </div>
+          }
+        }
       </div>
-      <div class="col-md-4 mt-md-0 mt-3">
-        <label class="form-label">State :</label>
-        <input type="text" formControlName="state" class="form-control" />
-      </div>
-      <div class="col-md-4 mt-md-0 mt-3">
-        <label class="form-label">Country :</label>
-        <input type="text" formControlName="country" class="form-control" />
-      </div>
-    </div>
 
-    <div class="row mt-2">
-      <div class="col-md-12 mt-md-0 mt-3">
-        <label for="" class="form-label">Address (Contain Your City, State, Country Also) :</label>
-        <textarea name="" id="" formControlName="address" class="form-control"></textarea>
+      <div class="row mt-2">
+        <div class="col-md-4 mt-md-0 mt-3">
+          <label class="form-label">City :</label>
+          <input type="text" formControlName="city" class="form-control" />
+          @if (
+            AddForm.get('city')?.touched ||
+            (AddForm.get('city')?.dirty && AddForm.get('city')?.pristine)
+          ) {
+            @if (AddForm.get('city')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>City Is Required !</p>
+              </div>
+            }
+          }
+        </div>
+        <div class="col-md-4 mt-md-0 mt-3">
+          <label class="form-label">State :</label>
+          <input type="text" formControlName="state" class="form-control" />
+          @if (
+            AddForm.get('state')?.touched ||
+            (AddForm.get('state')?.dirty && AddForm.get('state')?.pristine)
+          ) {
+            @if (AddForm.get('state')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>State Is Required !</p>
+              </div>
+            }
+          }
+        </div>
+        <div class="col-md-4 mt-md-0 mt-3">
+          <label class="form-label">Country :</label>
+          <input type="text" formControlName="country" class="form-control" />
+          @if (
+            AddForm.get('country')?.touched ||
+            (AddForm.get('country')?.dirty && AddForm.get('country')?.pristine)
+          ) {
+            @if (AddForm.get('country')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>Country Is Required !</p>
+              </div>
+            }
+          }
+        </div>
       </div>
-    </div>
 
-    <div class="row mt-2">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <label for="" class="form-label">Email :</label>
-        <input type="text" formControlName="email" class="form-control" />
+      <div class="row mt-2">
+        <div class="col-md-12 mt-md-0 mt-3">
+          <label for="" class="form-label"
+            >Address (Contain Your City, State, Country Also) :</label
+          >
+          <textarea name="" id="" formControlName="address" class="form-control"></textarea>
+        </div>
+        @if (
+          AddForm.get('address')?.touched ||
+          (AddForm.get('address')?.dirty && AddForm.get('address')?.pristine)
+        ) {
+          @if (AddForm.get('address')?.errors?.['required']) {
+            <div class="text-danger">
+              <p>Address Is Required !</p>
+            </div>
+          }
+        }
       </div>
-      <div class="col-md-6 mt-md-0 mt-3">
-        <label for="" class="form-label">Contact :</label>
-        <input type="number" formControlName="contact" class="form-control" />
-      </div>
-    </div>
 
-    <div class="row mt-2">
-      <div class="col-md-6 mt-md-0 mt-3">
-        <label for="" class="form-label">Cources :</label>
-        <input type="text" class="form-control" formControlName="cources" />
+      <div class="row mt-2">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <label for="" class="form-label">Email :</label>
+          <input type="text" formControlName="email" class="form-control" />
+          @if (
+            AddForm.get('email')?.touched ||
+            (AddForm.get('email')?.dirty && AddForm.get('email')?.pristine)
+          ) {
+            @if (AddForm.get('email')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>Contact Is Required !</p>
+              </div>
+            }
+            @if (AddForm.get('email')?.errors?.['email']) {
+              <div class="text-danger">
+                <p>Enter Email Proper !</p>
+              </div>
+            }
+          }
+        </div>
+        <div class="col-md-6 mt-md-0 mt-3">
+          <label for="" class="form-label">Contact :</label>
+          <input type="number" formControlName="contact" class="form-control" />
+          @if (
+            AddForm.get('contact')?.touched ||
+            (AddForm.get('contact')?.dirty && AddForm.get('contact')?.pristine)
+          ) {
+            @if (AddForm.get('contact')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>Contact Is Required !</p>
+              </div>
+            }
+            @if (AddForm.get('contact')?.errors?.['pattern']) {
+              <div class="text-danger">
+                <p>Enter Contact Proper !</p>
+              </div>
+            }
+          }
+        </div>
       </div>
-      <div class="col-md-6 mt-md-0 mt-3">
-        <label for="" class="form-label">Comment :</label>
-        <textarea name="" formControlName="comment" id="" class="form-control"></textarea>
-      </div>
-    </div>
 
-    @if (isSuccess) {
-      <div class="alert alert-success mt-2 text-center" role="alert">Form Has been Submitted ! 🎉</div>
-    }
-<button
-  type="submit"
-  class="btn btn-success m-2 w-100"
-  [disabled]="AddForm.invalid">
-  Save
-</button>
-  </form>
+      <div class="row mt-2">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <label for="" class="form-label">Cources :</label>
+          <input type="text" class="form-control" formControlName="cources" />
+          @if (
+            AddForm.get('cources')?.touched ||
+            (AddForm.get('cources')?.dirty && AddForm.get('cources')?.pristine)
+          ) {
+            @if (AddForm.get('cources')?.errors?.['required']) {
+              <div class="text-danger">
+                <p>Cources Is Required !</p>
+              </div>
+            }
+          }
+        </div>
+        <div class="col-md-6 mt-md-0 mt-3">
+          <label for="" class="form-label">Comment :</label>
+          <textarea name="" formControlName="comment" id="" class="form-control"></textarea>
+        </div>
+      </div>
+
+      @if (isSuccess) {
+        <div class="alert alert-success mt-2 text-center" role="alert">
+          Form Has been Submitted ! 🎉
+        </div>
+      }
+      <button type="submit" class="btn btn-success m-2 w-100" [disabled]="AddForm.invalid">
+        Save
+      </button>
+    </form>
+  </div>
 </div>

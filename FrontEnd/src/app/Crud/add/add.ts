@@ -1,6 +1,7 @@
 import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Studentcrud } from '../Service/studentcrud';
+import { serverRoutes } from '../../app.routes.server';
 
 @Component({
   selector: 'app-add',
@@ -13,29 +14,33 @@ export class Add {
   ngOnInit(): void {
     this.startTimer();
     console.log(this.displayTime);
+    // document.addEventListener('visibilitychange',this.handleChnageOrSwitch); // if the user change tab or switch then call me immediatlly // if the user chaneg & switch tab then handleTabSwitch call
   }
   ngOnDestroy(): void {
     clearInterval(this.timer);
+    // document.removeEventListener('visibilitychange',this.handleChnageOrSwitch);
   }
   Service = inject(Studentcrud);
 
   AddForm = new FormGroup({
-    studentname: new FormControl(''),
-    dob: new FormControl(''),
-    address: new FormControl(''),
-    city: new FormControl(''),
-    state: new FormControl(''),
-    country: new FormControl(''),
-    contact: new FormControl(),
-    email: new FormControl(''),
-    cources: new FormControl(''),
+    studentname: new FormControl('',[Validators.required,Validators.minLength(3)]),
+    dob: new FormControl('',Validators.required),
+    address: new FormControl('', Validators.required),
+    city: new FormControl('', Validators.required),
+    state: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    contact: new FormControl<number | null>(null,[Validators.required,Validators.pattern("^[0-9]{10}$")]),
+    email: new FormControl('',[Validators.required,Validators.email]),
+    cources: new FormControl('', Validators.required),
     comment: new FormControl(''),
   });
 
   private cdr = inject(ChangeDetectorRef);
   isSuccess = false;
+  Isloading = false;
 
   Addstudent() {
+    this.Isloading = true;
     console.log(this.AddForm.value);
     const data = { ...this.AddForm.value };
 
@@ -53,6 +58,7 @@ export class Add {
     this.Service.AddStudentService(data).subscribe({
       next: (res: any) => {
         this.isSuccess = true;
+        this.Isloading = false;
         this.AddForm.reset();
         this.cdr.detectChanges();
       },
@@ -64,9 +70,9 @@ export class Add {
     console.log(data);
   }
 
-  // timing
-  timeLeft: number = 12; // 2 minutes = 120 seconds
-  displayTime: string = '00:12';
+  // timing submit
+  timeLeft: number = 1000; // 2 minutes = 120 seconds
+  displayTime: string = '17:00';
   timer: any;
 
   startTimer() {
@@ -92,4 +98,14 @@ export class Add {
   format(value: number) {
     return value < 10 ? '0' + value : value;
   }
+
+
+  // handleChnageOrSwitch=()=>{
+  //   if(document.hidden && !this.isSuccess){
+  //     alert("You Tab Change OR Switch So Data Is Auto Save !");
+  //     this.Addstudent();
+  //   }
+  // }
+
+
 }
