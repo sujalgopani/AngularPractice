@@ -22,6 +22,79 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CRUD_Application_Angular_Asp_Net_sql.Model.LoginsTbl", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Uname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Logins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "sujalgopani@gmail.com",
+                            Password = "pass123",
+                            RoleId = 1,
+                            Uname = "Sujal"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "sujalgopani@gmail.com",
+                            Password = "pass123",
+                            RoleId = 2,
+                            Uname = "Admin"
+                        });
+                });
+
+            modelBuilder.Entity("CRUD_Application_Angular_Asp_Net_sql.Model.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("URole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleTbl");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            URole = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            URole = "Student"
+                        });
+                });
+
             modelBuilder.Entity("CRUD_Application_Angular_Asp_Net_sql.Model.StudnetMaster", b =>
                 {
                     b.Property<int>("studentid")
@@ -49,7 +122,6 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<long>("contact")
-                        .HasMaxLength(10)
                         .HasColumnType("bigint");
 
                     b.Property<string>("country")
@@ -94,6 +166,22 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Migrations
                             state = "Gujarat",
                             studentname = "Test Student"
                         });
+                });
+
+            modelBuilder.Entity("CRUD_Application_Angular_Asp_Net_sql.Model.LoginsTbl", b =>
+                {
+                    b.HasOne("CRUD_Application_Angular_Asp_Net_sql.Model.Role", "Role")
+                        .WithMany("Logins")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("CRUD_Application_Angular_Asp_Net_sql.Model.Role", b =>
+                {
+                    b.Navigation("Logins");
                 });
 #pragma warning restore 612, 618
         }

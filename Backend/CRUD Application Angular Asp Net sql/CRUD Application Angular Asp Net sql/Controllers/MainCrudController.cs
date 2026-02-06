@@ -1,8 +1,12 @@
-﻿using CRUD_Application_Angular_Asp_Net_sql.Model;
+﻿using CRUD_Application_Angular_Asp_Net_sql.DTO;
+using CRUD_Application_Angular_Asp_Net_sql.Model;
 using CRUD_Application_Angular_Asp_Net_sql.Service;
+using CRUD_Application_Angular_Asp_Net_sql.TokenGenerator;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Eventing.Reader;
 using System.Threading.Tasks;
 
 namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
@@ -14,12 +18,14 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
     {
         private readonly StudentDbcontext _context;
         private readonly EmialService _Emailservice;
+        private readonly TokenService _tokenService;
 
 
-        public MainCrudController(StudentDbcontext context, EmialService Emailservice)
+        public MainCrudController(StudentDbcontext context, EmialService Emailservice, TokenService tokenService)
         {
             _context = context;
             _Emailservice = Emailservice;
+            _tokenService = tokenService;
         }
 
         [HttpGet]
@@ -138,6 +144,38 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
         {
             await _Emailservice.SendEmailAsync(Em);
             return Ok("Mail Send SuccesFully..");
+        }
+
+
+        // login side for the role base
+        [HttpPost("Login")]
+        public async Task<IActionResult> LoginAndroleCheck([FromBody] LoginDTO Ld)
+        {
+            var user =await _context.userLogin.Include(i => i.Role).FirstOrDefaultAsync(r => r.Uname == Ld.Uname && r.Password == Ld.Password);
+            if (user == null) { return BadRequest("Login Fail !"); }
+
+
+
+                return Ok(new
+                {
+                    Message = "Login Suucessfully !",
+                    Username = user.Uname,
+                    Role = user.Role!.URole,
+                    RoleId = user.Role.Id,
+                    Token = _tokenService.GenerateToken()
+                });
+        }
+
+        // JWT TOken Generater
+        [HttpGet("GetToken")]
+        public async Task<IActionResult> Gettoken([FromServices] TokenService ts)
+        {
+            var token = _tokenService.GenerateToken();
+            return Ok(new
+            {
+                Message= "Token Generate SuccesFully !",
+                token = token
+            });
         }
     }
 }

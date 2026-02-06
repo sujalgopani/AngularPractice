@@ -59,6 +59,32 @@
   },
   {
     "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "Gettoken",
+    "RelativePath": "api/MainCrud/Gettoken/GetToken",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "LoginAndroleCheck",
+    "RelativePath": "api/MainCrud/LoginAndroleCheck/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Ld",
+        "Type": "CRUD_Application_Angular_Asp_Net_sql.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
     "Method": "SendEmail",
     "RelativePath": "api/MainCrud/SendEmail/Send",
     "HttpMethod": "POST",

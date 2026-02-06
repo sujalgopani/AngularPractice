@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form
+  [formGroup]="loginform"
+  (ngSubmit)="onLogin()"
+  class="border border-secondary d-flex flex-column w-50 p-4 rounded shadow">
+
+  <h4>Login Area !</h4>
+  <!-- Username -->
+  <div class="mb-3 w-100">
+    <label>Username :</label>
+    <input
+      type="text"
+      placeholder="Username"
+      class="form-control"
+      formControlName="Uname">
+  </div>
+
+  <!-- Password -->
+  <div class="mb-3 w-100">
+    <label>Password :</label>
+    <input
+      type="text"
+      placeholder="Password"
+      class="form-control"
+      formControlName="Password">
+  </div>
+
+  <button class="btn btn-success mt-2">
+    Login !
+  </button>
+
+</form>
+</div>

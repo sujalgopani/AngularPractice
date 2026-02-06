@@ -4,7 +4,7 @@ import { Mainnavbar } from "./Crud/mainnavbar/mainnavbar";
 
 @Component({
   selector: 'app-root',
-  imports: [Mainnavbar, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
