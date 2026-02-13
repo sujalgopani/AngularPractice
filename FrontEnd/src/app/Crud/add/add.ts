@@ -2,15 +2,18 @@ import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Studentcrud } from '../Service/studentcrud';
 import { serverRoutes } from '../../app.routes.server';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
   imports: [ReactiveFormsModule],
-  standalone: true, // ⭐⭐⭐ MUST ADD
+  standalone: true,
   templateUrl: './add.html',
   styleUrl: './add.css',
 })
 export class Add {
+  Service = inject(Studentcrud);
+  router1= inject(Router);
   ngOnInit(): void {
     this.startTimer();
     console.log(this.displayTime);
@@ -20,7 +23,6 @@ export class Add {
     clearInterval(this.timer);
     // document.removeEventListener('visibilitychange',this.handleChnageOrSwitch);
   }
-  Service = inject(Studentcrud);
 
   AddForm = new FormGroup({
     studentname: new FormControl('',[Validators.required,Validators.minLength(3)]),

@@ -9,13 +9,14 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class Studentnav {
   private router = inject(Router);
-  
+  Username = localStorage.getItem("username") ?? "Student";
   LogOut() {
-    const IsConform = confirm("Are You Sure Log-Out ?")
-    if(IsConform){
-    localStorage.removeItem('Username');
-    localStorage.removeItem('Role');
-    this.router.navigate(['']);
+    const IsConform = confirm('Are You Sure Log-Out ?');
+    if (IsConform) {
+      localStorage.removeItem('username');
+      localStorage.removeItem('role');
+      localStorage.removeItem('token');
+      this.router.navigate(['']);
     }
   }
 }

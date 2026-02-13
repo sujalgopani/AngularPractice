@@ -7,14 +7,16 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './adminnav.html',
   styleUrl: './adminnav.css',
 })
+
 export class Adminnav {
   private router = inject(Router);
-
+  Username = localStorage.getItem("username") ?? "Student";
   LogOut() {
     const IsConform = confirm("Are You Sure Log-Out ?")
     if(IsConform){
-    localStorage.removeItem('Username');
-    localStorage.removeItem('Role');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role');
+    localStorage.removeItem('token');
     this.router.navigate(['']);
     }
   }

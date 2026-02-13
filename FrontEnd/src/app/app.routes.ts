@@ -7,6 +7,7 @@ import { Test } from './test/test';
 import { Login } from './Crud/login/login';
 import { Adminnav } from './Crud/RoleNav/studentnav/adminnav/adminnav';
 import { Studentnav } from './Crud/RoleNav/studentnav/studentnav';
+import { Register } from './Crud/register/register';
 import { roleGuard } from './Crud/Guard/role-guard';
 
 export const routes: Routes = [
@@ -15,17 +16,17 @@ export const routes: Routes = [
     component: Login,
     pathMatch: 'full',
   },
+  // {
+  //   path: 'studentsrud',
+  //   children: [
+  //     { path: 'all', component: All },
+  //     { path: 'add-student', component: Add },
+  //     { path: 'update-student', component: Update },
+  //     { path: 'delete-student', component: Delete },
+  //   ],
+  // },
   {
-    path: 'StudentCrud',
-    children: [
-      { path: 'All', component: All },
-      { path: 'Add-Student', component: Add },
-      { path: 'Update-Student', component: Update },
-      { path: 'Delete-Student', component: Delete },
-    ],
-  },
-  {
-    path: 'Test',
+    path: 'test',
     component: Test,
   },
   // login by role
@@ -33,25 +34,31 @@ export const routes: Routes = [
     path: 'Login',
     component: Login,
   },
- {
-  path: 'Adminnav',
-  component: Adminnav,
-  canActivate: [roleGuard],
-  data: { role: 'Admin' },
-  children: [
-    { path: 'All', component: All },
-    { path: 'Add-Student', component: Add },
-    { path: 'Update-Student', component: Update },
-    { path: 'Delete-Student', component: Delete },
-  ],
-},
-{
-  path: 'StudentNav',
-  component: Studentnav,
-  canActivate: [roleGuard],
-  data: { role: 'Student' },
-  children: [
-    { path: 'All', component: All },
-  ],
-}
+  {
+    path: 'adminnav',
+    component: Adminnav,
+    children: [
+      { path: 'all', component: All },
+      { path: 'add-student', component: Add },
+      { path: 'update-student', component: Update },
+      { path: 'delete-student', component: Delete },
+    ],
+  },
+  {
+    path: 'studentnav',
+    component: Studentnav,
+    children: [
+      { path: '', redirectTo: 'all', pathMatch: 'full' },
+      { path: 'all', component: All },
+    ],
+  },
+  {
+    path: 'register',
+    component: Register,
+  },
+  // ,
+  // {
+  //   path: '**',
+  //   redirectTo: 'login',
+  // },
 ];

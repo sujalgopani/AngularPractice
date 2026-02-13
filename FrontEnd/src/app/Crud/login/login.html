@@ -1,33 +1,40 @@
 <div class="d-flex justify-content-center align-items-center vh-100">
   <form
-  [formGroup]="loginform"
-  (ngSubmit)="onLogin()"
-  class="border border-secondary d-flex flex-column w-50 p-4 rounded shadow">
+    [formGroup]="loginform"
+    (ngSubmit)="onLogin()"
+    class="border border-secondary d-flex flex-column w-50 p-4 rounded shadow"
+  >
+    <h4>Login Area !</h4>
+    <!-- Username -->
+    <div class="mb-3 w-100">
+      <label>Username :</label>
+      <input type="text" placeholder="Username" class="form-control" formControlName="Uname" />
+    </div>
 
-  <h4>Login Area !</h4>
-  <!-- Username -->
-  <div class="mb-3 w-100">
-    <label>Username :</label>
-    <input
-      type="text"
-      placeholder="Username"
-      class="form-control"
-      formControlName="Uname">
-  </div>
+    <!-- Password -->
+    <div class="mb-3 w-100">
+      <label>Password :</label>
 
-  <!-- Password -->
-  <div class="mb-3 w-100">
-    <label>Password :</label>
-    <input
-      type="text"
-      placeholder="Password"
-      class="form-control"
-      formControlName="Password">
-  </div>
+      <div class="d-flex align-items-center gap-2">
+        <input
+          [type]="Isseen ? 'text' : 'password'"
+          placeholder="Password"
+          class="form-control"
+          formControlName="Password"
+        />
 
-  <button class="btn btn-success mt-2">
-    Login !
-  </button>
+        <button type="button" (click)="ChangeView()" class="btn">
+          {{ Isseen ? '🙈' : '👁️' }}
+        </button>
+      </div>
+    </div>
 
-</form>
+    <div>
+      <a routerLink="/register">Register Now !</a>
+    </div>
+
+    <button [disabled]="Isloading" class="btn btn-success mt-2">
+      {{ Isloading ? 'Login Check..' : 'Login' }}
+    </button>
+  </form>
 </div>

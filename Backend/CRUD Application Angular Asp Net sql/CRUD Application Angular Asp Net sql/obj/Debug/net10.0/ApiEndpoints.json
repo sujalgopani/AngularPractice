@@ -119,5 +119,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CRUD_Application_Angular_Asp_Net_sql.Controllers.MainCrudController",
+    "Method": "UserRegister",
+    "RelativePath": "api/MainCrud/UserRegister/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "lt",
+        "Type": "CRUD_Application_Angular_Asp_Net_sql.Model.LoginsTbl",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

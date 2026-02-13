@@ -2,22 +2,29 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const roleGuard: CanActivateFn = (route, state) => {
-
+  debugger
+  console.log('Guard !!!');
   const router = inject(Router);
+  const token = localStorage.getItem('token');
 
-  const role = localStorage.getItem('Role');
-  const expectedRole = route.data?.['role'];
-
-  // 🔥 Not logged in
-  if(!role){
+  // ✅ No token → go login
+  if (!token) {
     router.navigate(['/login']);
     return false;
   }
 
-  // 🔥 Wrong role
-  if(role !== expectedRole){
-    alert("Access Denied!");
+  // ✅ Decode JWT
+  const payload = JSON.parse(atob(token.split('.')[1]));
+
+  // exp is in seconds → convert to milliseconds
+  const expiryTime = payload.exp * 1000;
+
+  // ✅ Token expired
+  if (Date.now() > expiryTime) {
+    localStorage.clear(); // logout
     router.navigate(['/login']);
+    console.log('Expire !');
+
     return false;
   }
 

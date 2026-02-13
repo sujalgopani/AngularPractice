@@ -47,4 +47,8 @@ export class Studentcrud {
   GenerateToken(){
     return  this.http.get<any>("https://localhost:44309/api/MainCrud/Gettoken/GetToken");
   }
+
+  RegisterUser(User:any){
+    return this.http.post<any>("https://localhost:44309/api/MainCrud/UserRegister/Register",User);
+  }
 }

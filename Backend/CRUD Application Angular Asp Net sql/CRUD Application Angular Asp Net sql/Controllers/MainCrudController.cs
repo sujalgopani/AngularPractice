@@ -151,11 +151,11 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> LoginAndroleCheck([FromBody] LoginDTO Ld)
         {
-            var user =await _context.userLogin.Include(i => i.Role).FirstOrDefaultAsync(r => r.Uname == Ld.Uname && r.Password == Ld.Password);
-            if (user == null) { return BadRequest("Login Fail !"); }
+            var user =await _context.userLogin.Include(i => i.Role).FirstOrDefaultAsync(r => r.Uname == Ld.Uname);
 
-
-
+            if (user == null || !BCrypt.Net.BCrypt.Verify(Ld.Password,user.Password)) {
+                return BadRequest("Login Fail !");
+            }
                 return Ok(new
                 {
                     Message = "Login Suucessfully !",
@@ -164,6 +164,25 @@ namespace CRUD_Application_Angular_Asp_Net_sql.Controllers
                     RoleId = user.Role.Id,
                     Token = _tokenService.GenerateToken()
                 });
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> UserRegister(LoginsTbl lt)
+        {
+            if (lt == null) return BadRequest("Register Not Possible !");
+
+            var IsAlready = await _context.userLogin.AnyAsync(x => x.Uname == lt.Uname);
+            if (IsAlready)
+            {
+                return BadRequest(new { message = "User already registered!" });
+            }
+
+            lt.Password = BCrypt.Net.BCrypt.HashPassword(lt.Password);
+            await _context.userLogin.AddAsync(lt);
+            await _context.SaveChangesAsync();
+            return Ok(new { 
+                RegisterMsg="Register SuccessFully Done !"
+            });
         }
 
         // JWT TOken Generater
